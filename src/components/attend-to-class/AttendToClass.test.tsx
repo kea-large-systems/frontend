@@ -30,7 +30,6 @@ describe("attend to class component", () => {
     await act(async () => {
       await userEvent.type(inputClassCode, "abcd1234", { delay: 0.1 });
       userEvent.click(submitButton);
-      console.log(onSubmit);
     });
     await waitFor(() => {
       //function that makes the assert to be executed several times before it is failing

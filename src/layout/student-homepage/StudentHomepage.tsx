@@ -5,10 +5,7 @@ import {
 } from "../../components/attend-to-class/AttendToClass";
 
 export function StudentHomepage() {
-  const onSubmit = (data: AttendClassFormValues) => {
-    console.log("data", data);
-    console.log("submitted");
-  };
+  const onSubmit = (_data: AttendClassFormValues) => {};
   return (
     <VStack>
       <AttendToClass onSubmit={onSubmit} />

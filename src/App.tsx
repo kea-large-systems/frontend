@@ -1,12 +1,13 @@
 import React from "react";
-import { ChakraProvider } from "@chakra-ui/react";
 import { BrowserRouter } from "react-router-dom";
-import { theme } from "./theme/Theme";
+import { StudentHomepage } from "./layout/student-homepage/StudentHomepage";
+import { StudentNavigationBar } from "./layout/navigation-bar/student-navigation-bar/StudentNavigationBar";
 
 function App() {
   return (
     <BrowserRouter>
-      <ChakraProvider theme={theme} />
+      <StudentNavigationBar />
+      <StudentHomepage />
     </BrowserRouter>
   );
 }

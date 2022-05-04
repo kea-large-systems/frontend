@@ -20,7 +20,11 @@ describe("checks if the teacher subject management page loads correctly", () => 
       
     // });
 
-    // test("checks if the page has a subject table with the appropriate columns", () => {
+    test("checks if the page has a subject table with the appropriate columns", () => {
+      render(<TeacherSubjectManagement />);
 
-    // });
+      screen.getByText("CLASS");
+      screen.getByText("SUBJECT NAME");
+      screen.getByText("STUDENTS");
+    });
 });

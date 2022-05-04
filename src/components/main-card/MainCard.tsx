@@ -20,5 +20,5 @@ export function MainCard({ children }: MainCardProps) {
     });
   };
 
-  return <VStack width={"55vw"} height={"70vh"} maxHeight={"70vh"} background={"pink"} px={10} py={5}>{getChildren()}</VStack>;
+  return <VStack borderRadius={"5px"} boxShadow={"0px 0px 23px -1px rgba(0, 0, 0, 0.2)"} width={"55vw"} height={"70vh"} maxHeight={"70vh"} px={10} py={5}>{getChildren()}</VStack>;
 }

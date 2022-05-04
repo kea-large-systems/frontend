@@ -1,24 +1,29 @@
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes as Switch } from "react-router-dom";
 import { StudentHomepage } from "./layout/student-homepage/StudentHomepage";
-import { StudentNavigationBar } from "./layout/navigation-bar/student-navigation-bar/StudentNavigationBar";
-import { TeacherNavigationBar } from "./layout/navigation-bar/teacher-navigation-bar/TeacherNavigationBar";
 import { TeacherSubjectManagement } from "./layout/teacher-subject-management/TeacherSubjectManagement";
-import { addScaleCorrector } from "framer-motion";
+import {
+  AuthorizedNavigationBar,
+  UserType,
+} from "./layout/navigation-bar/authorized-navigation-bar/AuthorizedNavigationBar";
+import { CentralLayout } from "./layout/central-layout/CentralLayout";
+import { Spacer } from "@chakra-ui/react";
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route
-          path="/"
-          element={[<StudentNavigationBar />, <StudentHomepage />]}
-        />
-        <Route
-          path="/manage-classes"
-          element={[<TeacherNavigationBar />, <TeacherSubjectManagement />]}
-        ></Route>
-      </Routes>
+      <AuthorizedNavigationBar userType={UserType.GUEST}/>
+      <CentralLayout>
+        <Switch>
+          <Route
+            path="/"
+            element={<StudentHomepage />}
+          />
+          <Route
+            path="/manage-classes"
+            element={<TeacherSubjectManagement />}
+          ></Route>
+        </Switch>
+      </CentralLayout>
     </BrowserRouter>
   );
 }

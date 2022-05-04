@@ -1,7 +1,11 @@
 
 
 export default describe("checks if the teacher subject management page loads correctly", () => {
-    
+
+  test("makes it run", () => {
+  expect(1).toBe(1);
+  });
+
     // test("checks if the page has an add button", () => {
       
     // });

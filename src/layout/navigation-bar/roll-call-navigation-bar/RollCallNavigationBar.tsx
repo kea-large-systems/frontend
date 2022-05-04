@@ -5,7 +5,7 @@ interface NavigationBarProps {
   children: JSX.Element | JSX.Element[];
 }
 
-export function NavigationBar({ children }: NavigationBarProps): ReactElement {
+export function RollCallNavigationBar({ children }: NavigationBarProps): ReactElement {
   return (
     <Flex
       px={20}

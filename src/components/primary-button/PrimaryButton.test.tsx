@@ -6,7 +6,7 @@ describe("checks that the primary button is being loaded correctly", () => {
   test("checks if the button text is correct", () => {
     render(<PrimaryButton>Primary</PrimaryButton>);
 
-    screen.getByText("Primary");
+    screen.getByRole("button", {name: /Primary/i});
   });
 
   test("checks if the button triggers a function when clicked", () => {

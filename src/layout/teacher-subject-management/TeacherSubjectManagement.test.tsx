@@ -1,17 +1,26 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import { TeacherSubjectManagement } from "./TeacherSubjectManagement";
+import { TestQueryProvider } from "../../test-utils/TestQueryProvider";
 
 
 describe("checks if the teacher subject management page loads correctly", () => {
 
     test("checks if the page has a search component", () => {
-      render(<TeacherSubjectManagement />);
+      render(
+        <TestQueryProvider>
+          <TeacherSubjectManagement />
+        </TestQueryProvider>
+      );
 
       screen.getByPlaceholderText("Search");
     });
 
     test("checks if the page has an add button", () => {
-      render(<TeacherSubjectManagement />);
+      render(
+        <TestQueryProvider>
+          <TeacherSubjectManagement />
+        </TestQueryProvider>
+      );
 
       screen.getByRole("button", {name: /Add/i});
     });
@@ -21,10 +30,33 @@ describe("checks if the teacher subject management page loads correctly", () => 
     // });
 
     test("checks if the page has a subject table with the appropriate columns", () => {
-      render(<TeacherSubjectManagement />);
+      render(
+        <TestQueryProvider>
+          <TeacherSubjectManagement />
+        </TestQueryProvider>
+      );
 
       screen.getByText("CLASS");
       screen.getByText("SUBJECT NAME");
       screen.getByText("STUDENTS");
     });
+
+  test("checks if the subject table has the correct data", async() => {
+    render(
+      <TestQueryProvider>
+        <TeacherSubjectManagement />
+      </TestQueryProvider>
+    );
+
+    await waitFor(async () => {
+      await screen.findByText("SW22");
+      await screen.findByText("DS22");
+      await screen.findByText("KYS");
+      await screen.findByText("AB20");
+      await screen.findByText("DI21");
+      await screen.findByText("DI21i");
+      await screen.findByText("WW3");
+    }, {timeout: 1010});
+
+  });
 });

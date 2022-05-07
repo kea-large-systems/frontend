@@ -1,5 +1,6 @@
 import { Table, TableContainer, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
 import { ReactElement } from "react";
+import { LoadingTable } from "../loading-table/LoadingTable";
 
 export interface Subject {
   id: number;
@@ -10,9 +11,10 @@ export interface Subject {
 
 interface SubjectTableProps {
   data?: Subject[];
+  isLoading?: boolean;
 }
 
-export function SubjectTable({ data = [] }: SubjectTableProps) {
+export function SubjectTable({ data = [], isLoading = false }: SubjectTableProps) {
   const getTableRows = (subjects: Subject[]): ReactElement[] => {
     return subjects.map((subject) => {
       return (
@@ -35,10 +37,9 @@ export function SubjectTable({ data = [] }: SubjectTableProps) {
             <Th>STUDENTS</Th>
           </Tr>
         </Thead>
-        <Tbody>
-          {getTableRows(data)}
-        </Tbody>
+        {!isLoading && <Tbody>{getTableRows(data)}</Tbody>}
       </Table>
+      {isLoading && <LoadingTable rows={10} />}
     </TableContainer>
   );
 }

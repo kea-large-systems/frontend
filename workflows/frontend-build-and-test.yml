@@ -1,0 +1,36 @@
+name: Build and test
+on:
+  pull_request:
+  branches: [development]
+
+jobs:
+  build:
+    name: bulid and test the project development
+    runs-on: ubuntu-latest
+    env:
+      environment: dev
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup node
+      uses: actions/setup-node@v2
+      with:
+        node-version: "16"
+
+    - name: Install dependencies
+      run: yarn install --frozen-lockfile
+      shell: bash
+
+    - name: Test
+        run: yarn test
+        shell: bash
+
+    - name: Build
+      run: yarn build
+      shell: bash
+
+    - name: Install msw js file
+      run:  npx msw init public
+      shell: bash

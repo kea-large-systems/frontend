@@ -1,7 +1,5 @@
 import { Button, VStack } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { ClassApi } from "../../api/ClassApi";
 import { DeleteClassAttendanceCode, GetClassAttendanceCode } from "../../api/useClass";
 import { useLecture } from "../../api/useLecture";
 import { Subject } from "../../components/subject-table/SubjectTable";
@@ -9,7 +7,7 @@ import { Subject } from "../../components/subject-table/SubjectTable";
 export function AttendanceCodePage() {
   const location = useLocation();
   const subject = location.state as Subject; 
-  const { data: lecture, isLoading } = useLecture(subject.id);
+  const { data: lecture } = useLecture(subject.id);
   const { data: code } = GetClassAttendanceCode(lecture?.data.lectureId);
   const navigate = useNavigate();
   const { mutate } = DeleteClassAttendanceCode(lecture?.data.lectureId);

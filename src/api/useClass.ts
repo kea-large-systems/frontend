@@ -11,3 +11,8 @@ export const GetClassAttendanceCode = (id: number) => {
   const client = UseClient();
   return useQuery("classes", () => client.getClassAttendanceCode(id));
 };
+
+export const DeleteClassAttendanceCode = (id: number) => {
+  const client = UseClient();
+  return useQuery("classes", () => client.deleteClassAttendanceCode(id));
+};

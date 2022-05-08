@@ -9,5 +9,5 @@ const useClient = () => {
 
 export const useLecture = (id: number) => {
     const client = useClient();
-    return useQuery("lectures", () => client.createLecturesBySubject(id));
+    return useQuery("lectures", () => client.createLectureBySubject(id));
 }

@@ -1,5 +1,4 @@
 import axios from "axios";
-import { body } from "msw/lib/types/context";
 
 // TODO: add ${process.env.REACT_APP_API_URL} in the empty string once the api endpoints have been implemented.
 export const BASE_URL = "";
@@ -11,7 +10,7 @@ export class LectureApi {
 		this.accessToken = accessToken;
 	}
 
-	public createLecturesBySubject(id: number) {
+	public createLectureBySubject(id: number) {
 		return axios({
 			headers: {
 				Authorization: `Bearer ${this.accessToken}`,

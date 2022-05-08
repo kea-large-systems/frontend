@@ -1,23 +1,31 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { TeacherSubjectManagement } from "./TeacherSubjectManagement";
 import { TestQueryProvider } from "../../test-utils/TestQueryProvider";
+import { Router } from "react-router-dom";
+import { createMemoryHistory } from "history";
 
 describe("checks if the teacher subject management page loads correctly", () => {
   test("checks if the page has a search component", () => {
+    const history = createMemoryHistory();
     render(
-      <TestQueryProvider>
-        <TeacherSubjectManagement />
-      </TestQueryProvider>
+      <Router location={history.location} navigator={history}>
+          <TestQueryProvider>
+            <TeacherSubjectManagement />
+          </TestQueryProvider>
+      </Router>
     );
 
     screen.getByPlaceholderText("Search");
   });
 
   test("checks if the page has an add button", () => {
+    const history = createMemoryHistory();
     render(
-      <TestQueryProvider>
-        <TeacherSubjectManagement />
-      </TestQueryProvider>
+      <Router location={history.location} navigator={history}>
+        <TestQueryProvider>
+          <TeacherSubjectManagement />
+        </TestQueryProvider>
+      </Router>
     );
 
     screen.getByRole("button", { name: /Add/i });
@@ -28,10 +36,13 @@ describe("checks if the teacher subject management page loads correctly", () => 
   // });
 
   test("checks if the page has a subject table with the appropriate columns", () => {
+    const history = createMemoryHistory();
     render(
-      <TestQueryProvider>
-        <TeacherSubjectManagement />
-      </TestQueryProvider>
+      <Router location={history.location} navigator={history}>
+        <TestQueryProvider>
+          <TeacherSubjectManagement />
+        </TestQueryProvider>
+      </Router>
     );
 
     screen.getByText("CLASS");
@@ -40,10 +51,13 @@ describe("checks if the teacher subject management page loads correctly", () => 
   });
 
   test("checks if the subject table has the correct data", async () => {
+    const history = createMemoryHistory();
     render(
-      <TestQueryProvider>
-        <TeacherSubjectManagement />
-      </TestQueryProvider>
+      <Router location={history.location} navigator={history}>
+        <TestQueryProvider>
+          <TeacherSubjectManagement />
+        </TestQueryProvider>
+      </Router>
     );
 
     await waitFor(

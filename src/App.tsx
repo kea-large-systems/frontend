@@ -6,6 +6,7 @@ import {
   UserType,
 } from "./layout/navigation-bar/authorized-navigation-bar/AuthorizedNavigationBar";
 import { CentralLayout } from "./layout/central-layout/CentralLayout";
+import { AttendanceCodePage } from "./layout/attendance-code-page/AttendanceCodePage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             path="/manage-classes"
             element={<TeacherSubjectManagement />}
           ></Route>
+          <Route path="/attendance-code" element={<AttendanceCodePage />} />
         </Switch>
       </CentralLayout>
     </BrowserRouter>

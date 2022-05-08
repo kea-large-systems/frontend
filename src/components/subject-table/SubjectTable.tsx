@@ -7,6 +7,7 @@ import {
   Tr,
 } from "@chakra-ui/react";
 import { ReactElement } from "react";
+import { useNavigate } from "react-router-dom";
 import { LoadingTable } from "../loading-table/LoadingTable";
 import { TableRow } from "../table-row/TableRow";
 
@@ -26,12 +27,14 @@ export function SubjectTable({
   data = [],
   isLoading = false,
 }: SubjectTableProps) {
+  const navigate = useNavigate();
   const getTableRows = (subjects: Subject[]): ReactElement[] => {
     return subjects?.map((subject) => {
       return (
         <TableRow
           key={subject.id}
           data={[subject.class, subject.name, subject.studentsCount]}
+          onClick={() => navigate(`/attendance-code`, {state: subject})}
         />
       );
     });

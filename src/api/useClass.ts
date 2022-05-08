@@ -9,7 +9,7 @@ const UseClient = () => {
 
 export const GetClassAttendanceCode = (id: number) => {
   const client = UseClient();
-  return useQuery("classes", () => client.getClassAttendanceCode(id));
+  return useQuery("classes", () => client.getClassAttendanceCode(id), {refetchInterval: 5000});
 };
 
 export const DeleteClassAttendanceCode = (id: number) => {

@@ -10,5 +10,10 @@ export const Button = {
       width: "250px",
       _hover: { opacity: 0.8 },
     },
+    primary: {
+      bgColor: "primary",
+      color: "secondaryText",
+      _hover: { opacity: 0.8 },
+    },
   },
 };

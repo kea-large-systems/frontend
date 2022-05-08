@@ -1,8 +1,8 @@
 import { RollCallNavigationBar } from "../roll-call-navigation-bar/RollCallNavigationBar";
-import { Box, Button, HStack } from "@chakra-ui/react";
 import NavigationBarLink from "../navigation-bar-link/NavigationBarLink";
+import { Box, Button, HStack } from "@chakra-ui/react";
 
-export function DefaultNavigationBar() {
+export function TeacherNavigationBar() {
   return (
     <RollCallNavigationBar>
       <HStack>
@@ -11,10 +11,13 @@ export function DefaultNavigationBar() {
             Role Call
           </Button>
         </NavigationBarLink>
+        <NavigationBarLink path="/manage-classes">
+          <Button variant="navigationLink">Manage Classes</Button>
+        </NavigationBarLink>
       </HStack>
       <Box>
-        <NavigationBarLink path="/login">
-          <Button variant="navigationLink">Login</Button>
+        <NavigationBarLink path="/logout">
+          <Button variant="navigationLink">Log out</Button>
         </NavigationBarLink>
       </Box>
     </RollCallNavigationBar>

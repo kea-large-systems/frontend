@@ -6,10 +6,13 @@ import { createMemoryHistory } from "history";
 
 describe("checks if the navigation bar link works correctly", () => {
   test("checks if the link exists", () => {
+    const history = createMemoryHistory();
     const { getByText } = render(
-      <NavigationBarLink path={"/home"}>
-        <span>some text</span>
-      </NavigationBarLink>
+      <Router location={history.location} navigator={history}>
+        <NavigationBarLink path={"/home"}>
+          <span>some text</span>
+        </NavigationBarLink>
+      </Router>
     );
     getByText("some text");
   });

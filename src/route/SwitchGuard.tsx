@@ -5,6 +5,7 @@ import { TeacherSubjectManagement } from "../layout/teacher-subject-management/T
 import { LoginPage } from "../layout/login-page/LoginPage";
 import { NotFoundPage } from "../layout/not-found-page/NotFoundPage";
 import { LoginSuccess } from "../layout/login-page/login-success/LoginSuccess";
+import { AttendanceCodePage } from "../layout/attendance-code-page/AttendanceCodePage";
 
 interface SwitchGuardProps {
   userType: UserType;
@@ -53,6 +54,7 @@ export function SwitchGuard({
             path="/"
             element={<TeacherSubjectManagement userId={userId} />}
           />
+          <Route element={<AttendanceCodePage />} path="/attendance-code" />
           <Route path="/*" element={<NotFoundPage />} />
         </Switch>
       );

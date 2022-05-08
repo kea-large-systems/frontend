@@ -10,7 +10,7 @@ export class ClassApi {
 		this.accessToken = accessToken;
 	}
 
-	public getClassAttendanceCode(id: string) {
+	public getClassAttendanceCode(id: number) {
 		return axios({
 			headers: {
 				Authorization: `Bearer ${this.accessToken}`,

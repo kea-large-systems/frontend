@@ -34,7 +34,7 @@ export function SubjectTable({
         <TableRow
           key={subject.id}
           data={[subject.class, subject.name, subject.studentsCount]}
-          onClick={() => navigate(`/attendance-code/${subject.name}`)}
+          onClick={() => navigate(`/attendance-code`, {state: subject})}
         />
       );
     });

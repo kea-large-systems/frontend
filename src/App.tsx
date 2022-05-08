@@ -19,7 +19,7 @@ function App() {
             path="/manage-classes"
             element={<TeacherSubjectManagement />}
           ></Route>
-          <Route path="/attendance-code/:subject" element={<AttendanceCodePage />} />
+          <Route path="/attendance-code" element={<AttendanceCodePage />} />
         </Switch>
       </CentralLayout>
     </BrowserRouter>

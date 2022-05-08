@@ -7,7 +7,7 @@ const UseClient = () => {
   return classApi;
 };
 
-export const GetClassAttendanceCode = (id: string) => {
+export const GetClassAttendanceCode = (id: number) => {
   const client = UseClient();
   return useQuery("classes", () => client.getClassAttendanceCode(id));
 };

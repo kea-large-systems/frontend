@@ -9,12 +9,10 @@ describe("checks if the teacher subject management page loads correctly", () => 
     const history = createMemoryHistory();
     render(
       <Router location={history.location} navigator={history}>
-
-      <TestQueryProvider>
-        <TeacherSubjectManagement userId={"1"} />
-      </TestQueryProvider>
+        <TestQueryProvider>
+          <TeacherSubjectManagement userId={"1"} />
+        </TestQueryProvider>
       </Router>
-
     );
 
     screen.getByPlaceholderText("Search");
@@ -25,7 +23,7 @@ describe("checks if the teacher subject management page loads correctly", () => 
     render(
       <Router location={history.location} navigator={history}>
         <TestQueryProvider>
-          <TeacherSubjectManagement userId={"1"}/>
+          <TeacherSubjectManagement userId={"1"} />
         </TestQueryProvider>
       </Router>
     );
@@ -42,7 +40,7 @@ describe("checks if the teacher subject management page loads correctly", () => 
     render(
       <Router location={history.location} navigator={history}>
         <TestQueryProvider>
-          <TeacherSubjectManagement userId={} />
+          <TeacherSubjectManagement userId={"1"} />
         </TestQueryProvider>
       </Router>
     );
@@ -57,7 +55,7 @@ describe("checks if the teacher subject management page loads correctly", () => 
     render(
       <Router location={history.location} navigator={history}>
         <TestQueryProvider>
-          <TeacherSubjectManagement userId={"1"}/>
+          <TeacherSubjectManagement userId={"1"} />
         </TestQueryProvider>
       </Router>
     );

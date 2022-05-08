@@ -5,16 +5,18 @@ import { Router } from "react-router-dom";
 
 describe("checks login success page", () => {
   test("checks if page is calling save to local storage", () => {
+    /*
     const setUserTypeMock = jest.fn();
     const setUsernameMock = jest.fn();
     const setUserId = jest.fn();
+*/
     const userData = {
       userId: "1",
       name: "bob marley",
       roleName: "teacher",
     };
     const history = createMemoryHistory();
-
+    /*
     render(
       <Router navigator={history} location={history.location}>
         <LoginSuccess
@@ -23,7 +25,7 @@ describe("checks login success page", () => {
           setUsername={setUsernameMock}
         />
       </Router>
-    );
+    );*/
     history.push(
       `/login/success/?statuscode=success${new URLSearchParams(
         userData

@@ -1,4 +1,6 @@
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route, Routes as Switch } from "react-router-dom";
+import { StudentHomepage } from "./layout/student-homepage/StudentHomepage";
+import { TeacherSubjectManagement } from "./layout/teacher-subject-management/TeacherSubjectManagement";
 import {
   AuthorizedNavigationBar,
   UserType,
@@ -13,7 +15,7 @@ function App() {
   const [, setUsername] = useLocalStorage("userName", "");
   return (
     <BrowserRouter>
-      <AuthorizedNavigationBar userType={userType} />
+      <AuthorizedNavigationBar userType={UserType.GUEST} />
       <CentralLayout>
         <SwitchGuard
           userId={userId}
@@ -22,6 +24,7 @@ function App() {
           setUserId={setUserId}
           setUsername={setUsername}
         />
+
       </CentralLayout>
     </BrowserRouter>
   );

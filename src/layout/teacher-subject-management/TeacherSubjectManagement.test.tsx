@@ -1,23 +1,33 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { TeacherSubjectManagement } from "./TeacherSubjectManagement";
 import { TestQueryProvider } from "../../test-utils/TestQueryProvider";
+import { createMemoryHistory } from "history";
+import { Router } from "react-router-dom";
 
 describe("checks if the teacher subject management page loads correctly", () => {
   test("checks if the page has a search component", () => {
+    const history = createMemoryHistory();
     render(
+      <Router location={history.location} navigator={history}>
+
       <TestQueryProvider>
         <TeacherSubjectManagement userId={"1"} />
       </TestQueryProvider>
+      </Router>
+
     );
 
     screen.getByPlaceholderText("Search");
   });
 
   test("checks if the page has an add button", () => {
+    const history = createMemoryHistory();
     render(
-      <TestQueryProvider>
-        <TeacherSubjectManagement userId={"1"} />
-      </TestQueryProvider>
+      <Router location={history.location} navigator={history}>
+        <TestQueryProvider>
+          <TeacherSubjectManagement userId={"1"}/>
+        </TestQueryProvider>
+      </Router>
     );
 
     screen.getByRole("button", { name: /Add/i });
@@ -28,10 +38,13 @@ describe("checks if the teacher subject management page loads correctly", () => 
   // });
 
   test("checks if the page has a subject table with the appropriate columns", () => {
+    const history = createMemoryHistory();
     render(
-      <TestQueryProvider>
-        <TeacherSubjectManagement userId={"1"} />
-      </TestQueryProvider>
+      <Router location={history.location} navigator={history}>
+        <TestQueryProvider>
+          <TeacherSubjectManagement userId={} />
+        </TestQueryProvider>
+      </Router>
     );
 
     screen.getByText("CLASS");
@@ -40,10 +53,13 @@ describe("checks if the teacher subject management page loads correctly", () => 
   });
 
   test("checks if the subject table has the correct data", async () => {
+    const history = createMemoryHistory();
     render(
-      <TestQueryProvider>
-        <TeacherSubjectManagement userId={"1"} />
-      </TestQueryProvider>
+      <Router location={history.location} navigator={history}>
+        <TestQueryProvider>
+          <TeacherSubjectManagement userId={"1"}/>
+        </TestQueryProvider>
+      </Router>
     );
 
     await waitFor(
@@ -56,7 +72,7 @@ describe("checks if the teacher subject management page loads correctly", () => 
         await screen.findByText("DI21i");
         await screen.findByText("WW3");
       },
-      { timeout: 2000 }
+      { timeout: 1500 }
     );
   });
 });

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { ClassApi } from "../../api/ClassApi";
 import { DeleteClassAttendanceCode } from "../../api/useClass";
+import { useLecture } from "../../api/useLecture";
 import { Subject } from "../../components/subject-table/SubjectTable";
 
 export function AttendanceCodePage() {
@@ -10,25 +11,28 @@ export function AttendanceCodePage() {
   const subject = location.state as Subject; 
   const [code, setCode] = useState();
   const codeApi = new ClassApi("");
+  const { data: lecture, isLoading } = useLecture(subject.id);
 
   useEffect(() => {
-    updateCode();
-    const interval = setInterval(() => {
+    if (!isLoading) {
       updateCode();
-    }, 4000);
-    return () => {
-      clearInterval(interval);
+      const interval = setInterval(() => {
+        updateCode();
+      }, 4000);
+      return () => {
+        clearInterval(interval);
+      }
     }
-  });
+  }, [isLoading]);
 
   const updateCode = () => {
-    codeApi.getClassAttendanceCode(subject.id).then((result) => {
+    codeApi.getClassAttendanceCode(lecture?.data.id).then((result) => {
       setCode(result.data.code);
     });
   }
 
   const handleClick = () => {
-    DeleteClassAttendanceCode(subject.id);
+    DeleteClassAttendanceCode(lecture?.data.id);
   };
 
   return (

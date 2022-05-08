@@ -1,6 +1,6 @@
 import { Button, VStack } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ClassApi } from "../../api/ClassApi";
 import { DeleteClassAttendanceCode, GetClassAttendanceCode } from "../../api/useClass";
 import { useLecture } from "../../api/useLecture";
@@ -9,31 +9,13 @@ import { Subject } from "../../components/subject-table/SubjectTable";
 export function AttendanceCodePage() {
   const location = useLocation();
   const subject = location.state as Subject; 
-  // const [code, setCode] = useState();
-  const codeApi = new ClassApi("");
   const { data: lecture, isLoading } = useLecture(subject.id);
   const { data: code } = GetClassAttendanceCode(lecture?.data.lectureId);
-  
-  // useEffect(() => {
-  //   if (!isLoading) {
-  //     updateCode();
-  //     const interval = setInterval(() => {
-  //       updateCode();
-  //     }, 4000);
-  //     return () => {
-  //       clearInterval(interval);
-  //     }
-  //   }
-  // }, [isLoading]);
-
-  // const updateCode = () => {
-  //   codeApi.getClassAttendanceCode(lecture?.data.id).then((result) => {
-  //     setCode(result.data.code);
-  //   });
-  // }
+  const navigate = useNavigate();
+  const { mutate } = DeleteClassAttendanceCode(lecture?.data.lectureId);
 
   const handleClick = () => {
-    DeleteClassAttendanceCode(lecture?.data.id);
+    mutate(lecture?.data.lectureId, {onSuccess: () => navigate("/manage-classes")})
   };
 
   return (

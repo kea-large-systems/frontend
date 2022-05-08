@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ClassApi } from "./ClassApi";
-import { useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
 
 const UseClient = () => {
   const [classApi] = useState(() => new ClassApi(""));
@@ -14,5 +14,5 @@ export const GetClassAttendanceCode = (id: number) => {
 
 export const DeleteClassAttendanceCode = (id: number) => {
   const client = UseClient();
-  return useQuery("classes", () => client.deleteClassAttendanceCode(id));
+  return useMutation("classes", () => client.deleteClassAttendanceCode(id));
 };

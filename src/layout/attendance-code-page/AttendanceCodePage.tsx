@@ -5,6 +5,8 @@ export function AttendanceCodePage() {
   return (
     <VStack height="70vh" justifyContent="center">
       {/* TODO: Name of class here */}
+      <p>Code: </p>
+      {/* TODO:  Display code */}
       <Button variant="secondary">
         Check Attendance
       </Button>

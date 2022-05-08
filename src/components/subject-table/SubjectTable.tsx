@@ -1,6 +1,15 @@
-import { Table, TableContainer, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
+import {
+  Table,
+  TableContainer,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
+} from "@chakra-ui/react";
 import { ReactElement } from "react";
 import { LoadingTable } from "../loading-table/LoadingTable";
+import { TableRow } from "../table-row/TableRow";
 
 export interface Subject {
   id: number;
@@ -14,22 +23,24 @@ interface SubjectTableProps {
   isLoading?: boolean;
 }
 
-export function SubjectTable({ data = [], isLoading = false }: SubjectTableProps) {
+export function SubjectTable({
+  data = [],
+  isLoading = false,
+}: SubjectTableProps) {
   const getTableRows = (subjects: Subject[]): ReactElement[] => {
-    return subjects.map((subject) => {
+    return subjects?.map((subject) => {
       return (
-        <Tr key={subject.id}>
-          <Td>{subject.class}</Td>
-          <Td>{subject.name}</Td>
-          <Td>{subject.studentsCount}</Td>
-        </Tr>
+        <TableRow
+          key={subject.id}
+          data={[subject.class, subject.name, subject.studentsCount]}
+        />
       );
     });
   };
 
   return (
-    <TableContainer>
-      <Table variant='simple'>
+    <TableContainer width="100%">
+      <Table variant="simple">
         <Thead>
           <Tr>
             <Th>CLASS</Th>

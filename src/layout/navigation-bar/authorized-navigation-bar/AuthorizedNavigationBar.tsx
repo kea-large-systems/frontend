@@ -9,10 +9,12 @@ interface AuthorizedNavigationBarProps {
 export enum UserType {
   STUDENT = "STUDENT",
   TEACHER = "TEACHER",
-  GUEST = "GUEST"
+  GUEST = "GUEST",
 }
 
-export function AuthorizedNavigationBar({ userType = UserType.GUEST }: AuthorizedNavigationBarProps) {
+export function AuthorizedNavigationBar({
+  userType = UserType.GUEST,
+}: AuthorizedNavigationBarProps) {
   switch (userType) {
     case UserType.STUDENT:
       return <StudentNavigationBar />;

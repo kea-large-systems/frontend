@@ -6,18 +6,14 @@ import {
   UserType,
 } from "./layout/navigation-bar/authorized-navigation-bar/AuthorizedNavigationBar";
 import { CentralLayout } from "./layout/central-layout/CentralLayout";
-import { Spacer } from "@chakra-ui/react";
 
 function App() {
   return (
     <BrowserRouter>
-      <AuthorizedNavigationBar userType={UserType.GUEST}/>
+      <AuthorizedNavigationBar userType={UserType.GUEST} />
       <CentralLayout>
         <Switch>
-          <Route
-            path="/"
-            element={<StudentHomepage />}
-          />
+          <Route path="/" element={<StudentHomepage />} />
           <Route
             path="/manage-classes"
             element={<TeacherSubjectManagement />}

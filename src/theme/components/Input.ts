@@ -7,9 +7,9 @@ export const Input = {
         borderBottom: "1px solid",
         borderColor: "inputBorder",
         _placeholder: {
-          color: "inputPlaceholder"
-        }
-      }
+          color: "inputPlaceholder",
+        },
+      },
     },
   },
 };

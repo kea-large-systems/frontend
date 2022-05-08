@@ -14,6 +14,6 @@ export const Button = {
       bgColor: "primary",
       color: "secondaryText",
       _hover: { opacity: 0.8 },
-    }
+    },
   },
 };

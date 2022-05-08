@@ -9,7 +9,7 @@ export const theme = extendTheme({
     attendColor: "green",
     inputBackground: "#F0F0F1",
     inputBorder: "#606060",
-    inputPlaceholder: "#616060"
+    inputPlaceholder: "#616060",
   },
   components: { Button, Input },
 });

@@ -1,5 +1,3 @@
-import {getSubjects} from "./subjectsHandlers";
+import { getSubjects } from "./subjectsHandlers";
 
-export const handlers = [
-  getSubjects
-];
+export const handlers = [getSubjects];

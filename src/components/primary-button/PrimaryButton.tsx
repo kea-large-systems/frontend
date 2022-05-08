@@ -7,6 +7,15 @@ interface PrimaryButtonProps {
   onClick?: () => void;
 }
 
-export function PrimaryButton({children, size = "lg", width = "auto", onClick = () => {}}: PrimaryButtonProps) {
-  return <Button variant={"primary"} width={width} size={size} onClick={onClick}>{children}</Button>
+export function PrimaryButton({
+  children,
+  size = "lg",
+  width = "auto",
+  onClick = () => {},
+}: PrimaryButtonProps) {
+  return (
+    <Button variant={"primary"} width={width} size={size} onClick={onClick}>
+      {children}
+    </Button>
+  );
 }

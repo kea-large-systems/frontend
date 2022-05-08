@@ -1,4 +1,4 @@
-import { act, getByText, render, waitFor } from "@testing-library/react";
+import { act, render, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { AttendToClass } from "./AttendToClass";
 

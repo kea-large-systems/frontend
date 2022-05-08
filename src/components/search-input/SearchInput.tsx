@@ -1,5 +1,5 @@
-import {Input} from "@chakra-ui/react";
+import { Input } from "@chakra-ui/react";
 
 export function SearchInput() {
-    return <Input variant='inputRollCall' placeholder="Search" size='lg' />;
+  return <Input variant="inputRollCall" placeholder="Search" size="lg" />;
 }

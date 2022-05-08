@@ -7,12 +7,12 @@ const UseClient = () => {
   return classApi;
 };
 
-export const GetClassAttendanceCode = (id: number) => {
+export const useGetClassAttendanceCode = (id: number) => {
   const client = UseClient();
   return useQuery("classes", () => client.getClassAttendanceCode(id), {refetchInterval: 5000});
 };
 
-export const DeleteClassAttendanceCode = (id: number) => {
+export const useDeleteClassAttendanceCode = (id: number) => {
   const client = UseClient();
   return useMutation("classes", () => client.deleteClassAttendanceCode(id));
 };

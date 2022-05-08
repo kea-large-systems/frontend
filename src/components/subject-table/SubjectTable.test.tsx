@@ -1,15 +1,27 @@
 import { render, screen } from "@testing-library/react";
+import { Router } from "react-router-dom";
 import { SubjectTable, Subject } from "./SubjectTable";
+import { createMemoryHistory } from "history";
 
 describe("checks that the class table is being loaded correctly", () => {
   test("checks that the table gets loaded properly", () => {
-    render(<SubjectTable />);
+    const history = createMemoryHistory();
+    render(
+      <Router location={history.location} navigator={history}>
+        <SubjectTable />
+      </Router>
+    );
 
     screen.getByRole("table");
   });
 
   test("checks that the table contains the right headers", () => {
-    render(<SubjectTable />);
+    const history = createMemoryHistory();
+    render(
+      <Router location={history.location} navigator={history}>
+        <SubjectTable />
+      </Router>
+    );
 
     screen.getByText("CLASS");
     screen.getByText("SUBJECT NAME");
@@ -22,7 +34,12 @@ describe("checks that the class table is being loaded correctly", () => {
       { class: "Class2", name: "Subject2", studentsCount: 20, id: 2 },
     ];
 
-    render(<SubjectTable data={tableData} />);
+    const history = createMemoryHistory();
+    render(
+      <Router location={history.location} navigator={history}>
+        <SubjectTable data={tableData} />
+      </Router>
+    );
 
     screen.getByText("Class1");
     screen.getByText("Subject1");

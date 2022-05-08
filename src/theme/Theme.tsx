@@ -5,6 +5,7 @@ import { Input } from "./components/Input";
 export const theme = extendTheme({
   colors: {
     primary: "#19169C",
+    secondary: "#5D5FEF",
     secondaryText: "#ffffff",
     attendColor: "green",
     inputBackground: "#F0F0F1",

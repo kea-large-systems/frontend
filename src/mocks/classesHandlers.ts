@@ -4,7 +4,7 @@ import { rest } from "msw";
 export const getClassCode = rest.get("/class-code/:id", (req, res, ctx) => {
     return res(
       ctx.status(200),
-      ctx.json({code: "JFASSMDA"})
+      ctx.json({code: Math.random().toString()})
     );
   });
   

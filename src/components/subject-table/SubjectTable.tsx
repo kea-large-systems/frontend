@@ -2,7 +2,6 @@ import {
   Table,
   TableContainer,
   Tbody,
-  Td,
   Th,
   Thead,
   Tr,

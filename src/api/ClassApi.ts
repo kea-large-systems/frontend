@@ -17,7 +17,7 @@ export class ClassApi {
 				"X-MCU-Protocol-Version": "1",
 			},
 			method: "get",
-			url: `${BASE_URL}/class-code/${id}`,
+			url: `${BASE_URL}/class-codes/${id}`,
 		});
 	}
 
@@ -28,7 +28,18 @@ export class ClassApi {
 				"X-MCU-Protocol-Version": "1",
 			},
 			method: "delete",
-			url: `${BASE_URL}/class-code/${id}`,
+			url: `${BASE_URL}/class-codes/${id}`,
+		});
+	}
+
+	public getAttendClass(code: string) {
+		return axios({
+			headers: {
+				Authorization: `Bearer ${this.accessToken}`,
+				"X-MCU-Protocol-Version": "1",
+			},
+			method: "get",
+			url: `${BASE_URL}/class-codes/attend/${code}`,
 		});
 	}
 }

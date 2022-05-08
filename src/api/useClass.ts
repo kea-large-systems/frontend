@@ -16,3 +16,8 @@ export const useDeleteClassAttendanceCode = (id: number) => {
   const client = UseClient();
   return useMutation("classes", () => client.deleteClassAttendanceCode(id));
 };
+
+export const useAttendClass = (code: string) => {
+  const client = UseClient();
+  return useMutation("classes", () => client.getAttendClass(code));
+};

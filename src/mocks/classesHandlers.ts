@@ -17,6 +17,5 @@ export const getClassCode = rest.get("/class-codes/:id", (req, res, ctx) => {
   export const getAttendCode = rest.get("/class-codes/attend/:code", (req, res, ctx) => {
     return res(
       ctx.status(200),
-      ctx.json({code: Math.random().toString()})
     )
   });

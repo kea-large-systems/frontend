@@ -4,7 +4,11 @@ import {
   AttendClassFormValues,
 } from "../../components/attend-to-class/AttendToClass";
 
-export function StudentHomepage() {
+interface StudentHomepageProps {
+  userId: string;
+}
+
+export function StudentHomepage({}: StudentHomepageProps) {
   const onSubmit = (_data: AttendClassFormValues) => {};
   return (
     <VStack>

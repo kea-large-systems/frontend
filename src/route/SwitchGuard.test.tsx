@@ -10,7 +10,7 @@ describe("checks the guard functionality", () => {
     const history = createMemoryHistory();
     render(
       <Router navigator={history} location={history.location}>
-        <SwitchGuard userType={UserType.GUEST} />
+        <SwitchGuard userType={UserType.GUEST} userId={""} />
       </Router>
     );
     screen.getByText("Login");
@@ -21,7 +21,7 @@ describe("checks the guard functionality", () => {
     history.push("/manage-classes");
     render(
       <Router navigator={history} location={history.location}>
-        <SwitchGuard userType={UserType.GUEST} />
+        <SwitchGuard userType={UserType.GUEST} userId={""} />
       </Router>
     );
     screen.getByText("Page not Found 404");
@@ -31,7 +31,7 @@ describe("checks the guard functionality", () => {
     const history = createMemoryHistory();
     render(
       <Router navigator={history} location={history.location}>
-        <SwitchGuard userType={UserType.STUDENT} />
+        <SwitchGuard userType={UserType.STUDENT} userId={"1"} />
       </Router>
     );
     screen.getByText("Attend Class");
@@ -42,7 +42,7 @@ describe("checks the guard functionality", () => {
     history.push("/login");
     render(
       <Router navigator={history} location={history.location}>
-        <SwitchGuard userType={UserType.STUDENT} />
+        <SwitchGuard userType={UserType.STUDENT} userId={"1"} />
       </Router>
     );
     screen.getByText("Page not Found 404");
@@ -53,7 +53,7 @@ describe("checks the guard functionality", () => {
     render(
       <Router navigator={history} location={history.location}>
         <TestQueryProvider>
-          <SwitchGuard userType={UserType.TEACHER} />
+          <SwitchGuard userType={UserType.TEACHER} userId={"1"} />
         </TestQueryProvider>
       </Router>
     );
@@ -66,7 +66,7 @@ describe("checks the guard functionality", () => {
     render(
       <Router navigator={history} location={history.location}>
         <TestQueryProvider>
-          <SwitchGuard userType={UserType.TEACHER} />
+          <SwitchGuard userType={UserType.TEACHER} userId={"1"} />
         </TestQueryProvider>
       </Router>
     );

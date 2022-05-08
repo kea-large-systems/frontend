@@ -8,12 +8,20 @@ import { useLocalStorage } from "./hooks/useLocalStorage";
 import { SwitchGuard } from "./route/SwitchGuard";
 
 function App() {
-  const [userType] = useLocalStorage("userType", UserType.GUEST);
+  const [userType, setUserType] = useLocalStorage("userType", UserType.GUEST);
+  const [userId, setUserId] = useLocalStorage("userId", "");
+  const [, setUsername] = useLocalStorage("userName", "");
   return (
     <BrowserRouter>
       <AuthorizedNavigationBar userType={userType} />
       <CentralLayout>
-        <SwitchGuard userType={userType} />
+        <SwitchGuard
+          userId={userId}
+          userType={userType}
+          setUserType={setUserType}
+          setUserId={setUserId}
+          setUsername={setUsername}
+        />
       </CentralLayout>
     </BrowserRouter>
   );

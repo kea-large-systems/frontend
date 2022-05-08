@@ -6,7 +6,7 @@ describe("checks if the teacher subject management page loads correctly", () => 
   test("checks if the page has a search component", () => {
     render(
       <TestQueryProvider>
-        <TeacherSubjectManagement />
+        <TeacherSubjectManagement userId={"1"} />
       </TestQueryProvider>
     );
 
@@ -16,7 +16,7 @@ describe("checks if the teacher subject management page loads correctly", () => 
   test("checks if the page has an add button", () => {
     render(
       <TestQueryProvider>
-        <TeacherSubjectManagement />
+        <TeacherSubjectManagement userId={"1"} />
       </TestQueryProvider>
     );
 
@@ -30,7 +30,7 @@ describe("checks if the teacher subject management page loads correctly", () => 
   test("checks if the page has a subject table with the appropriate columns", () => {
     render(
       <TestQueryProvider>
-        <TeacherSubjectManagement />
+        <TeacherSubjectManagement userId={"1"} />
       </TestQueryProvider>
     );
 
@@ -42,7 +42,7 @@ describe("checks if the teacher subject management page loads correctly", () => 
   test("checks if the subject table has the correct data", async () => {
     render(
       <TestQueryProvider>
-        <TeacherSubjectManagement />
+        <TeacherSubjectManagement userId={"1"} />
       </TestQueryProvider>
     );
 
@@ -56,7 +56,7 @@ describe("checks if the teacher subject management page loads correctly", () => 
         await screen.findByText("DI21i");
         await screen.findByText("WW3");
       },
-      { timeout: 1500 }
+      { timeout: 2000 }
     );
   });
 });

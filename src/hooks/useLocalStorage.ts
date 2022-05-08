@@ -6,7 +6,7 @@ export const useLocalStorage = <T>(
 ): [T, typeof setValue] => {
   const [storedValue, setStoredValue] = useState(() => {
     try {
-      const item = window.sessionStorage.getItem(key);
+      const item = window.localStorage.getItem(key);
       return item ? JSON.parse(item) : initialValue;
     } catch (error) {
       return initialValue;
@@ -18,7 +18,7 @@ export const useLocalStorage = <T>(
         const valueToStore =
           value instanceof Function ? value(storedValue) : value;
         setStoredValue(valueToStore);
-        window.sessionStorage.setItem(key, JSON.stringify(valueToStore));
+        window.localStorage.setItem(key, JSON.stringify(valueToStore));
       } catch (error) {
         console.log(error);
       }

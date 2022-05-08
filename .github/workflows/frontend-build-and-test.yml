@@ -24,8 +24,8 @@ jobs:
       shell: bash
 
     - name: Test
-        run: yarn test
-        shell: bash
+      run: yarn test
+      shell: bash
 
     - name: Build
       run: yarn build

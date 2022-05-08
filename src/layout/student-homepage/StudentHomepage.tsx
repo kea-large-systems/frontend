@@ -8,7 +8,7 @@ interface StudentHomepageProps {
   userId: string;
 }
 
-export function StudentHomepage({}: StudentHomepageProps) {
+export function StudentHomepage({ userId }: StudentHomepageProps) {
   const onSubmit = (_data: AttendClassFormValues) => {};
   return (
     <VStack>

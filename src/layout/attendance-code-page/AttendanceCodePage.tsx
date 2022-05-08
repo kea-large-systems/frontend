@@ -13,7 +13,7 @@ export function AttendanceCodePage() {
   const { mutate } = useDeleteClassAttendanceCode(lecture?.data.lectureId);
 
   const handleClick = () => {
-    mutate(lecture?.data.lectureId, {onSuccess: () => navigate("/manage-classes")})
+    mutate(lecture?.data.lectureId, {onSuccess: () => navigate(-1)})
   };
 
   return (

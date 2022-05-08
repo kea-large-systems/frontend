@@ -7,6 +7,7 @@ import {
 } from "./layout/navigation-bar/authorized-navigation-bar/AuthorizedNavigationBar";
 import { CentralLayout } from "./layout/central-layout/CentralLayout";
 import { AttendanceCodePage } from "./layout/attendance-code-page/AttendanceCodePage";
+import { LectureCodeAcceptedPage } from "./layout/lecture-code-accepted-page/LectureCodeAcceptedPage";
 
 function App() {
   return (
@@ -15,11 +16,9 @@ function App() {
       <CentralLayout>
         <Switch>
           <Route path="/" element={<StudentHomepage />} />
-          <Route
-            path="/manage-classes"
-            element={<TeacherSubjectManagement />}
-          ></Route>
+          <Route path="/manage-classes" element={<TeacherSubjectManagement />} />
           <Route path="/attendance-code" element={<AttendanceCodePage />} />
+          <Route path="/lecture-code-accepted" element={<LectureCodeAcceptedPage />} />
         </Switch>
       </CentralLayout>
     </BrowserRouter>

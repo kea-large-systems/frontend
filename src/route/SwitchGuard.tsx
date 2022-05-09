@@ -8,6 +8,7 @@ import { LoginSuccess } from "../layout/login-page/login-success/LoginSuccess";
 import { AttendanceCodePage } from "../layout/attendance-code-page/AttendanceCodePage";
 import { LectureCodeAcceptedPage } from "../layout/lecture-code-accepted-page/LectureCodeAcceptedPage";
 
+
 interface SwitchGuardProps {
   userType: UserType;
   userId: string;

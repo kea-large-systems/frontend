@@ -4,12 +4,8 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ChakraProvider } from "@chakra-ui/react";
 import { theme } from "./theme/Theme";
-import { worker } from "./mocks/browser";
 import { QueryClient, QueryClientProvider } from "react-query";
 
-if (process.env.NODE_ENV === "development") {
-  worker.start();
-}
 
 const queryClient = new QueryClient();
 

@@ -1,4 +1,4 @@
-import { Route, Routes as Switch } from "react-router-dom";
+import { Route, Routes as Switch, useNavigate } from "react-router-dom";
 import { UserType } from "../layout/navigation-bar/authorized-navigation-bar/AuthorizedNavigationBar";
 import { StudentHomepage } from "../layout/student-homepage/StudentHomepage";
 import { TeacherSubjectManagement } from "../layout/teacher-subject-management/TeacherSubjectManagement";
@@ -6,6 +6,8 @@ import { LoginPage } from "../layout/login-page/LoginPage";
 import { NotFoundPage } from "../layout/not-found-page/NotFoundPage";
 import { LoginSuccess } from "../layout/login-page/login-success/LoginSuccess";
 import { AttendanceCodePage } from "../layout/attendance-code-page/AttendanceCodePage";
+import { LectureCodeAcceptedPage } from "../layout/lecture-code-accepted-page/LectureCodeAcceptedPage";
+
 
 interface SwitchGuardProps {
   userType: UserType;
@@ -22,6 +24,8 @@ export function SwitchGuard({
   setUserType = () => {},
   setUsername = () => {},
 }: SwitchGuardProps) {
+  const navigate = useNavigate();
+
   switch (userType) {
     case UserType.GUEST:
       return (
@@ -43,7 +47,8 @@ export function SwitchGuard({
     case UserType.STUDENT:
       return (
         <Switch>
-          <Route path="/" element={<StudentHomepage userId={userId} />} />
+          <Route path="/" element={<StudentHomepage onAttend={() => {navigate("/lecture-code-accepted")}} />} />
+          <Route path="/lecture-code-accepted" element={<LectureCodeAcceptedPage />} />
           <Route path="/*" element={<NotFoundPage />} />
         </Switch>
       );

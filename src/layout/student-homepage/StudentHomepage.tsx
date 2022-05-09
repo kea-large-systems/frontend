@@ -3,13 +3,16 @@ import {
   AttendToClass,
   AttendClassFormValues,
 } from "../../components/attend-to-class/AttendToClass";
+import { useAttendClass } from "../../api/useClass";
 
 interface StudentHomepageProps {
-  userId: string;
+  onAttend: () => void;
 }
 
-export function StudentHomepage({ userId }: StudentHomepageProps) {
-  const onSubmit = (_data: AttendClassFormValues) => {};
+export function StudentHomepage({onAttend}: StudentHomepageProps) {
+  const { mutate } = useAttendClass();
+
+  const onSubmit = (_data: AttendClassFormValues) => { mutate({code: _data.classCode}, {onSuccess: onAttend})};
   return (
     <VStack>
       <AttendToClass onSubmit={onSubmit} />

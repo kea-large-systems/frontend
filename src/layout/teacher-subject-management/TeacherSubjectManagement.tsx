@@ -4,9 +4,13 @@ import { MainCard } from "../../components/main-card/MainCard";
 import { PrimaryButton } from "../../components/primary-button/PrimaryButton";
 import { SubjectTable } from "../../components/subject-table/SubjectTable";
 import { useSubject } from "../../api/useSubject";
-
-export function TeacherSubjectManagement() {
-  const { data: subjects, isLoading } = useSubject();
+interface TeacherSubjectManagementProps {
+  userId: string;
+}
+export function TeacherSubjectManagement({
+  userId,
+}: TeacherSubjectManagementProps) {
+  const { data: subjects, isLoading } = useSubject(+userId);
 
   return (
     <HStack mx="40px" spacing="40px" key="page-container">

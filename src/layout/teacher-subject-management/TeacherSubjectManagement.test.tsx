@@ -1,17 +1,17 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { TeacherSubjectManagement } from "./TeacherSubjectManagement";
 import { TestQueryProvider } from "../../test-utils/TestQueryProvider";
-import { Router } from "react-router-dom";
 import { createMemoryHistory } from "history";
+import { Router } from "react-router-dom";
 
 describe("checks if the teacher subject management page loads correctly", () => {
   test("checks if the page has a search component", () => {
     const history = createMemoryHistory();
     render(
       <Router location={history.location} navigator={history}>
-          <TestQueryProvider>
-            <TeacherSubjectManagement />
-          </TestQueryProvider>
+        <TestQueryProvider>
+          <TeacherSubjectManagement userId={"1"} />
+        </TestQueryProvider>
       </Router>
     );
 
@@ -23,7 +23,7 @@ describe("checks if the teacher subject management page loads correctly", () => 
     render(
       <Router location={history.location} navigator={history}>
         <TestQueryProvider>
-          <TeacherSubjectManagement />
+          <TeacherSubjectManagement userId={"1"} />
         </TestQueryProvider>
       </Router>
     );
@@ -40,7 +40,7 @@ describe("checks if the teacher subject management page loads correctly", () => 
     render(
       <Router location={history.location} navigator={history}>
         <TestQueryProvider>
-          <TeacherSubjectManagement />
+          <TeacherSubjectManagement userId={"1"} />
         </TestQueryProvider>
       </Router>
     );
@@ -55,7 +55,7 @@ describe("checks if the teacher subject management page loads correctly", () => 
     render(
       <Router location={history.location} navigator={history}>
         <TestQueryProvider>
-          <TeacherSubjectManagement />
+          <TeacherSubjectManagement userId={"1"} />
         </TestQueryProvider>
       </Router>
     );

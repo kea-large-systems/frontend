@@ -1,6 +1,7 @@
 import { rest } from "msw";
+import { BASE_URL } from "./mockConfig";
 
-export const createLectureBySubject = rest.post("/lectures", (req, res, ctx) => {
+export const createLectureBySubject = rest.post(`${BASE_URL}/lectures`, (req, res, ctx) => {
 	return res(
 		ctx.status(200),
 		ctx.json({

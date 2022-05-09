@@ -2,6 +2,10 @@ import { useState } from "react";
 import { ClassApi } from "./ClassApi";
 import { useMutation, useQuery } from "react-query";
 
+interface UseAttendClassMutation {
+  code: string;
+}
+
 const UseClient = () => {
   const [classApi] = useState(() => new ClassApi(""));
   return classApi;
@@ -17,7 +21,7 @@ export const useDeleteClassAttendanceCode = (id: number) => {
   return useMutation("classes", () => client.deleteClassAttendanceCode(id));
 };
 
-export const useAttendClass = (code: string) => {
+export const useAttendClass = () => {
   const client = UseClient();
-  return useMutation("classes", () => client.getAttendClass(code));
+  return useMutation("classes", ({code}: UseAttendClassMutation) => client.getAttendClass(code));
 };

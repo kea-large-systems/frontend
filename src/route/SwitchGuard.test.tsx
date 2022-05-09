@@ -30,9 +30,11 @@ describe("checks the guard functionality", () => {
   test("checks student router guard", () => {
     const history = createMemoryHistory();
     render(
-      <Router navigator={history} location={history.location}>
-        <SwitchGuard userType={UserType.STUDENT} userId={"1"} />
-      </Router>
+      <TestQueryProvider>
+        <Router navigator={history} location={history.location}>
+          <SwitchGuard userType={UserType.STUDENT} userId={"1"} />
+        </Router>
+      </TestQueryProvider>
     );
     screen.getByText("Attend Class");
   });

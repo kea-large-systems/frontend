@@ -19,7 +19,7 @@ export class SubjectApi {
         "X-MCU-Protocol-Version": "1",
       },
       method: "get",
-      url: `${BASE_URL}/subjects/by_teacher/${teacherId}`,
+      url: `${BASE_URL}/subjects/by-teacher/${teacherId}`,
     });
   }
 }

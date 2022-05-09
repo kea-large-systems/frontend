@@ -3,7 +3,7 @@ import { BASE_URL } from "./mockConfig";
 
 // Handles a GET /subjects request
 export const getSubjects = rest.get(
-  `${BASE_URL}/subjects/by_teacher/:teacherId`,
+  `${BASE_URL}/subjects/by-teacher/:teacherId`,
   (req, res, ctx) => {
     return res(
       ctx.delay(1000),

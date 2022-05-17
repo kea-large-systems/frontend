@@ -6,7 +6,6 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { theme } from "./theme/Theme";
 import { QueryClient, QueryClientProvider } from "react-query";
 
-
 const queryClient = new QueryClient();
 
 ReactDOM.render(

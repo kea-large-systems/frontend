@@ -11,7 +11,7 @@ import { useContext } from "react";
 import { UserContext } from "../App";
 
 export function SwitchGuard() {
-  const { userDetail } = useContext(UserContext);
+  const { userDetail, setUserDetail } = useContext(UserContext);
   const navigate = useNavigate();
 
   switch (userDetail.role) {
@@ -52,6 +52,7 @@ export function SwitchGuard() {
         </Switch>
       );
     default:
+      setUserDetail({ role: UserType.GUEST });
       return (
         <Switch>
           <Route path="/*" element={<NotFoundPage />} />

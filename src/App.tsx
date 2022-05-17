@@ -6,17 +6,13 @@ import {
 import { CentralLayout } from "./layout/central-layout/CentralLayout";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import { SwitchGuard } from "./route/SwitchGuard";
-import { createContext, useState } from "react";
+import { createContext, useContext } from "react";
 
 function App() {
-  const [userType] = useLocalStorage("userType", UserType.GUEST);
-  const [userId] = useLocalStorage("userId", "");
-  const [username] = useLocalStorage("userName", "");
+  const { userDetail } = useContext(UserContext);
   return (
     <BrowserRouter>
-      <UserProvider
-        value={{ role: userType, userId: userId, username: username }}
-      >
+      <UserProvider value={userDetail}>
         <>
           <AuthorizedNavigationBar />
           <CentralLayout>
@@ -52,7 +48,10 @@ export const UserContext = createContext<UserDetailContext>({
 });
 
 export function UserProvider({ children, value }: UserProviderProps) {
-  const [userDetail, setUserDetail] = useState<UserDetail>(value);
+  const [userDetail, setUserDetail] = useLocalStorage<UserDetail>(
+    "userDetail",
+    value
+  );
   return (
     <UserContext.Provider value={{ userDetail, setUserDetail }}>
       {children}

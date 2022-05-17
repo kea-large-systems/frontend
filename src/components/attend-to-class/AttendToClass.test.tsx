@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { AttendToClass } from "./AttendToClass";
 
 describe("attend to class component", () => {
-  test("checks if input field for class code + butten to check in are exist", () => {
+  test("checks if input field and button for checking in exist", () => {
     const { getByText, getByPlaceholderText } = render(
       <AttendToClass onSubmit={() => {}} />
     );

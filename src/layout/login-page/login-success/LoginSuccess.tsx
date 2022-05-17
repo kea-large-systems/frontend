@@ -1,11 +1,8 @@
 import { UserType } from "../../navigation-bar/authorized-navigation-bar/AuthorizedNavigationBar";
 import { Navigate } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../../App";
 
-interface LoginSuccessProps {
-  setUserType: (userType: UserType) => void;
-  setUserId: (userId: string) => void;
-  setUsername: (username: string) => void;
-}
 const userTypeMapper = (userType: string) => {
   switch (userType.toLowerCase()) {
     case "student":
@@ -18,15 +15,14 @@ const userTypeMapper = (userType: string) => {
       return UserType.GUEST;
   }
 };
-export function LoginSuccess({
-  setUserType,
-  setUserId,
-  setUsername,
-}: LoginSuccessProps) {
+export function LoginSuccess() {
+  const { setUserDetail } = useContext(UserContext);
   const urlParams = new URLSearchParams(window.location.search);
-  setUserId(urlParams.get("userId")!!);
-  setUserType(userTypeMapper(urlParams.get("roleName")!!));
-  setUsername(urlParams.get("name")!!);
+  setUserDetail({
+    role: userTypeMapper(urlParams.get("roleName")!!),
+    userId: urlParams.get("userId")!!,
+    username: urlParams.get("name")!!,
+  });
 
   return <Navigate to={"/"} />;
 }

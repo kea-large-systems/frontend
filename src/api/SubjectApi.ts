@@ -12,7 +12,7 @@ export class SubjectApi {
     this.accessToken = accessToken;
   }
 
-  public apiGetSubjects(teacherId: number) {
+  public apiGetSubjects(teacherId: string) {
     return axios({
       headers: {
         Authorization: `Bearer ${this.accessToken}`,

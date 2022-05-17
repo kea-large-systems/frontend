@@ -7,7 +7,7 @@ const useClient = () => {
   return subjectApi;
 };
 
-export const useSubject = (teacherId: number) => {
+export const useSubject = (teacherId: string) => {
   const client = useClient();
   return useQuery("subjects", () => client.apiGetSubjects(teacherId));
 };

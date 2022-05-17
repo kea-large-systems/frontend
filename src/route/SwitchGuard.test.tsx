@@ -4,14 +4,17 @@ import { SwitchGuard } from "./SwitchGuard";
 import { Router } from "react-router-dom";
 import { createMemoryHistory } from "history";
 import { TestQueryProvider } from "../test-utils/TestQueryProvider";
+import { UserProvider } from "../App";
 
 describe("checks the guard functionality", () => {
   test("checks if the switch returns the proper routes for a guest user", () => {
     const history = createMemoryHistory();
     render(
-      <Router navigator={history} location={history.location}>
-        <SwitchGuard userType={UserType.GUEST} userId={""} />
-      </Router>
+      <UserProvider value={{ role: UserType.GUEST }}>
+        <Router navigator={history} location={history.location}>
+          <SwitchGuard />
+        </Router>
+      </UserProvider>
     );
     screen.getByText("Login");
   });
@@ -20,9 +23,11 @@ describe("checks the guard functionality", () => {
     const history = createMemoryHistory();
     history.push("/manage-classes");
     render(
-      <Router navigator={history} location={history.location}>
-        <SwitchGuard userType={UserType.GUEST} userId={""} />
-      </Router>
+      <UserProvider value={{ role: UserType.GUEST }}>
+        <Router navigator={history} location={history.location}>
+          <SwitchGuard />
+        </Router>
+      </UserProvider>
     );
     screen.getByText("Page not Found 404");
   });
@@ -31,9 +36,11 @@ describe("checks the guard functionality", () => {
     const history = createMemoryHistory();
     render(
       <TestQueryProvider>
-        <Router navigator={history} location={history.location}>
-          <SwitchGuard userType={UserType.STUDENT} userId={"1"} />
-        </Router>
+        <UserProvider value={{ role: UserType.STUDENT }}>
+          <Router navigator={history} location={history.location}>
+            <SwitchGuard />
+          </Router>
+        </UserProvider>
       </TestQueryProvider>
     );
     screen.getByText("Attend Class");
@@ -43,9 +50,11 @@ describe("checks the guard functionality", () => {
     const history = createMemoryHistory();
     history.push("/login");
     render(
-      <Router navigator={history} location={history.location}>
-        <SwitchGuard userType={UserType.STUDENT} userId={"1"} />
-      </Router>
+      <UserProvider value={{ role: UserType.STUDENT }}>
+        <Router navigator={history} location={history.location}>
+          <SwitchGuard />
+        </Router>
+      </UserProvider>
     );
     screen.getByText("Page not Found 404");
   });
@@ -53,11 +62,13 @@ describe("checks the guard functionality", () => {
   test("checks teacher router guard", () => {
     const history = createMemoryHistory();
     render(
-      <Router navigator={history} location={history.location}>
-        <TestQueryProvider>
-          <SwitchGuard userType={UserType.TEACHER} userId={"1"} />
-        </TestQueryProvider>
-      </Router>
+      <TestQueryProvider>
+        <UserProvider value={{ role: UserType.TEACHER, userId: "1" }}>
+          <Router navigator={history} location={history.location}>
+            <SwitchGuard />
+          </Router>
+        </UserProvider>
+      </TestQueryProvider>
     );
     screen.getByText("CLASS");
   });
@@ -66,11 +77,13 @@ describe("checks the guard functionality", () => {
     const history = createMemoryHistory();
     history.push("/login");
     render(
-      <Router navigator={history} location={history.location}>
-        <TestQueryProvider>
-          <SwitchGuard userType={UserType.TEACHER} userId={"1"} />
-        </TestQueryProvider>
-      </Router>
+      <TestQueryProvider>
+        <Router navigator={history} location={history.location}>
+          <UserProvider value={{ role: UserType.STUDENT, userId: "1" }}>
+            <SwitchGuard />
+          </UserProvider>
+        </Router>
+      </TestQueryProvider>
     );
     screen.getByText("Page not Found 404");
   });

@@ -6,25 +6,56 @@ import {
 import { CentralLayout } from "./layout/central-layout/CentralLayout";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import { SwitchGuard } from "./route/SwitchGuard";
+import { createContext, useState } from "react";
 
 function App() {
-  const [userType, setUserType] = useLocalStorage("userType", UserType.GUEST);
-  const [userId, setUserId] = useLocalStorage("userId", "");
-  const [, setUsername] = useLocalStorage("userName", "");
+  const [userType] = useLocalStorage("userType", UserType.GUEST);
+  const [userId] = useLocalStorage("userId", "");
+  const [username] = useLocalStorage("userName", "");
   return (
     <BrowserRouter>
-      <AuthorizedNavigationBar userType={userType} />
-      <CentralLayout>
-        <SwitchGuard
-          userId={userId}
-          userType={userType}
-          setUserType={setUserType}
-          setUserId={setUserId}
-          setUsername={setUsername}
-        />
-      </CentralLayout>
+      <UserProvider
+        value={{ role: userType, userId: userId, username: username }}
+      >
+        <>
+          <AuthorizedNavigationBar />
+          <CentralLayout>
+            <SwitchGuard />
+          </CentralLayout>
+        </>
+      </UserProvider>
     </BrowserRouter>
   );
 }
 
 export default App;
+
+export interface UserDetail {
+  username?: string;
+  role?: UserType;
+  userId?: string;
+}
+
+interface UserProviderProps {
+  children: JSX.Element;
+  value: UserDetail;
+}
+
+interface UserDetailContext {
+  userDetail: UserDetail;
+  setUserDetail: (userDetail: UserDetail) => void;
+}
+
+export const UserContext = createContext<UserDetailContext>({
+  userDetail: {},
+  setUserDetail: () => {},
+});
+
+export function UserProvider({ children, value }: UserProviderProps) {
+  const [userDetail, setUserDetail] = useState<UserDetail>(value);
+  return (
+    <UserContext.Provider value={{ userDetail, setUserDetail }}>
+      {children}
+    </UserContext.Provider>
+  );
+}

@@ -1,10 +1,8 @@
 import { StudentNavigationBar } from "../student-navigation-bar/StudentNavigationBar";
 import { TeacherNavigationBar } from "../teacher-navigation-bar/TeacherNavigationBar";
 import { DefaultNavigationBar } from "../default-navigation-bar/DefaultNavigationBar";
-
-interface AuthorizedNavigationBarProps {
-  userType: UserType;
-}
+import { useContext } from "react";
+import { UserContext } from "../../../App";
 
 export enum UserType {
   STUDENT = "STUDENT",
@@ -12,10 +10,9 @@ export enum UserType {
   GUEST = "GUEST",
 }
 
-export function AuthorizedNavigationBar({
-  userType = UserType.GUEST,
-}: AuthorizedNavigationBarProps) {
-  switch (userType) {
+export function AuthorizedNavigationBar() {
+  const { userDetail } = useContext(UserContext);
+  switch (userDetail.role) {
     case UserType.STUDENT:
       return <StudentNavigationBar />;
     case UserType.TEACHER:

@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 export const Button = {
   variants: {
     navigationLink: {
@@ -20,6 +22,6 @@ export const Button = {
       color: "secondaryText",
       width: "250px",
       _hover: { opacity: 0.8 },
-    }
+    },
   },
 };

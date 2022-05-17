@@ -44,7 +44,6 @@ describe("checks if the teacher subject management page loads correctly", () => 
         </TestQueryProvider>
       </Router>
     );
-
     screen.getByText("CLASS");
     screen.getByText("SUBJECT NAME");
     screen.getByText("STUDENTS");

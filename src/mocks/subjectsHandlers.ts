@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { rest } from "msw";
 import { BASE_URL } from "./mockConfig";
 

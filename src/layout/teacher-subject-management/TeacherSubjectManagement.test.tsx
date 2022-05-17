@@ -1,49 +1,35 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
 import { TeacherSubjectManagement } from "./TeacherSubjectManagement";
-import { TestQueryProvider } from "../../test-utils/TestQueryProvider";
 import { createMemoryHistory } from "history";
 import { Router } from "react-router-dom";
-import { UserProvider } from "../../App";
+import { UserDetail } from "../../App";
 import { UserType } from "../navigation-bar/authorized-navigation-bar/AuthorizedNavigationBar";
+import { renderWithUseContextUser } from "../../test-util";
 
 describe("checks if the teacher subject management page loads correctly", () => {
+  const teacherDetail: UserDetail = {
+    userId: "1",
+    username: "teacher test",
+    role: UserType.TEACHER,
+  };
   test("checks if the page has a search component", () => {
     const history = createMemoryHistory();
-    render(
+    renderWithUseContextUser(
       <Router location={history.location} navigator={history}>
-        <UserProvider
-          value={{
-            userId: "1",
-            username: "teacher test",
-            role: UserType.TEACHER,
-          }}
-        >
-          <TestQueryProvider>
-            <TeacherSubjectManagement />
-          </TestQueryProvider>
-        </UserProvider>
-      </Router>
+        <TeacherSubjectManagement />
+      </Router>,
+      teacherDetail
     );
-
     screen.getByPlaceholderText("Search");
   });
 
   test("checks if the page has an add button", () => {
     const history = createMemoryHistory();
-    render(
-      <UserProvider
-        value={{
-          userId: "1",
-          username: "teacher test",
-          role: UserType.TEACHER,
-        }}
-      >
-        <Router location={history.location} navigator={history}>
-          <TestQueryProvider>
-            <TeacherSubjectManagement />
-          </TestQueryProvider>
-        </Router>
-      </UserProvider>
+    renderWithUseContextUser(
+      <Router location={history.location} navigator={history}>
+        <TeacherSubjectManagement />
+      </Router>,
+      teacherDetail
     );
 
     screen.getByRole("button", { name: /Add/i });
@@ -55,20 +41,11 @@ describe("checks if the teacher subject management page loads correctly", () => 
 
   test("checks if the page has a subject table with the appropriate columns", () => {
     const history = createMemoryHistory();
-    render(
-      <UserProvider
-        value={{
-          userId: "1",
-          username: "teacher test",
-          role: UserType.TEACHER,
-        }}
-      >
-        <Router location={history.location} navigator={history}>
-          <TestQueryProvider>
-            <TeacherSubjectManagement />
-          </TestQueryProvider>
-        </Router>
-      </UserProvider>
+    renderWithUseContextUser(
+      <Router location={history.location} navigator={history}>
+        <TeacherSubjectManagement />
+      </Router>,
+      teacherDetail
     );
     screen.getByText("CLASS");
     screen.getByText("SUBJECT NAME");
@@ -77,20 +54,11 @@ describe("checks if the teacher subject management page loads correctly", () => 
 
   test("checks if the subject table has the correct data", async () => {
     const history = createMemoryHistory();
-    render(
-      <UserProvider
-        value={{
-          userId: "1",
-          username: "teacher test",
-          role: UserType.TEACHER,
-        }}
-      >
-        <Router location={history.location} navigator={history}>
-          <TestQueryProvider>
-            <TeacherSubjectManagement />
-          </TestQueryProvider>
-        </Router>
-      </UserProvider>
+    renderWithUseContextUser(
+      <Router location={history.location} navigator={history}>
+        <TeacherSubjectManagement />
+      </Router>,
+      teacherDetail
     );
 
     await waitFor(

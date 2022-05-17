@@ -1,13 +1,9 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import App from "./App";
-import { TestQueryProvider } from "./test-utils/TestQueryProvider";
+import { render } from "./test-util";
 
 test("renders the app correctly", () => {
-  render(
-    <TestQueryProvider>
-      <App />
-    </TestQueryProvider>
-  );
+  render(<App />);
 
   screen.getByText("Role Call");
 });

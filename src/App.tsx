@@ -7,6 +7,7 @@ import { CentralLayout } from "./layout/central-layout/CentralLayout";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import { SwitchGuard } from "./route/SwitchGuard";
 import { createContext, useContext } from "react";
+import { decryptObj, encryptObj } from "./utils/CryptoUtil";
 
 function App() {
   const { userDetail } = useContext(UserContext);
@@ -48,10 +49,16 @@ export const UserContext = createContext<UserDetailContext>({
 });
 
 export function UserProvider({ children, value }: UserProviderProps) {
-  const [userDetail, setUserDetail] = useLocalStorage<UserDetail>(
+  const [userDetailStorage, setUserDetailStorage] = useLocalStorage<string>(
     "userDetail",
-    value
+    encryptObj(value)
   );
+
+  const userDetail: UserDetail = decryptObj(userDetailStorage);
+  const setUserDetail = (value: UserDetail) => {
+    setUserDetailStorage(encryptObj(value));
+  }
+
   return (
     <UserContext.Provider value={{ userDetail, setUserDetail }}>
       {children}

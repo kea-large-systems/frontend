@@ -1,7 +1,7 @@
 import React, { FC, ReactElement } from "react";
 import { render, RenderOptions } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { UserDetail, UserProvider } from "./App";
+import { UserDetail, UserProvider } from "./provider/UserProvider";
 
 const AllTheProviders: FC = ({ children }) => {
   return (

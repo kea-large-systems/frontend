@@ -8,7 +8,7 @@ import { LoginSuccess } from "../layout/login-page/login-success/LoginSuccess";
 import { AttendanceCodePage } from "../layout/attendance-code-page/AttendanceCodePage";
 import { LectureCodeAcceptedPage } from "../layout/lecture-code-accepted-page/LectureCodeAcceptedPage";
 import { useContext } from "react";
-import { UserContext } from "../App";
+import { UserContext } from "../provider/UserProvider";
 
 export function SwitchGuard() {
   const { userDetail, setUserDetail } = useContext(UserContext);

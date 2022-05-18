@@ -1,7 +1,7 @@
 import { UserType } from "../../navigation-bar/authorized-navigation-bar/AuthorizedNavigationBar";
 import { Navigate } from "react-router-dom";
 import { useContext } from "react";
-import { UserContext } from "../../../App";
+import { UserContext } from "../../../provider/UserProvider";
 
 const userTypeMapper = (userType: string) => {
   switch (userType.toLowerCase()) {

@@ -2,9 +2,9 @@ import { screen, waitFor } from "@testing-library/react";
 import { TeacherSubjectManagement } from "./TeacherSubjectManagement";
 import { createMemoryHistory } from "history";
 import { Router } from "react-router-dom";
-import { UserDetail } from "../../App";
 import { UserType } from "../navigation-bar/authorized-navigation-bar/AuthorizedNavigationBar";
 import { renderWithUseContextUser } from "../../test-util";
+import { UserDetail } from "../../provider/UserProvider";
 
 describe("checks if the teacher subject management page loads correctly", () => {
   const teacherDetail: UserDetail = {

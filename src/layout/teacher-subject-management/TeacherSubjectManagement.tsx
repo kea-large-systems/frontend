@@ -5,7 +5,7 @@ import { PrimaryButton } from "../../components/primary-button/PrimaryButton";
 import { SubjectTable } from "../../components/subject-table/SubjectTable";
 import { useSubject } from "../../api/useSubject";
 import { useContext } from "react";
-import { UserContext } from "../../App";
+import { UserContext } from "../../provider/UserProvider";
 export function TeacherSubjectManagement() {
   const { userDetail } = useContext(UserContext);
   const { data: subjects, isLoading } = useSubject(userDetail.userId!!);

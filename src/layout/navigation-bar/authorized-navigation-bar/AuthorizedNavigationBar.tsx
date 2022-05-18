@@ -2,7 +2,7 @@ import { StudentNavigationBar } from "../student-navigation-bar/StudentNavigatio
 import { TeacherNavigationBar } from "../teacher-navigation-bar/TeacherNavigationBar";
 import { DefaultNavigationBar } from "../default-navigation-bar/DefaultNavigationBar";
 import { useContext } from "react";
-import { UserContext } from "../../../App";
+import { UserContext } from "../../../provider/UserProvider";
 
 export enum UserType {
   STUDENT = "STUDENT",

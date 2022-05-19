@@ -1,6 +1,7 @@
 import { RollCallNavigationBar } from "../roll-call-navigation-bar/RollCallNavigationBar";
 import NavigationBarLink from "../navigation-bar-link/NavigationBarLink";
 import { Box, Button, HStack } from "@chakra-ui/react";
+import { LogoutButton } from "../LogoutButton";
 
 export function StudentNavigationBar() {
   return (
@@ -20,7 +21,7 @@ export function StudentNavigationBar() {
       </HStack>
       <Box>
         <NavigationBarLink path="/logout">
-          <Button variant="navigationLink">Log out</Button>
+          <LogoutButton />
         </NavigationBarLink>
       </Box>
     </RollCallNavigationBar>

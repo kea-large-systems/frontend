@@ -8,16 +8,16 @@ import { UserContext, UserProvider } from "./provider/UserProvider";
 function App() {
   const { userDetail } = useContext(UserContext);
   return (
-    <BrowserRouter>
-      <UserProvider value={userDetail}>
+    <UserProvider value={userDetail}>
+      <BrowserRouter>
         <>
           <AuthorizedNavigationBar />
           <CentralLayout>
             <SwitchGuard />
           </CentralLayout>
         </>
-      </UserProvider>
-    </BrowserRouter>
+      </BrowserRouter>
+    </UserProvider>
   );
 }
 

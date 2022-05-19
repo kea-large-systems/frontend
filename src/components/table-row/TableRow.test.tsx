@@ -20,7 +20,7 @@ describe("checks that the table row is being loaded correctly", () => {
     }
   });
 
-  test("checks if the row triggers a function when clicked", () => {
+  test("checks if the row triggers a function when clicked", async () => {
     const click = jest.fn();
     const data = ["Wow"];
 
@@ -31,7 +31,7 @@ describe("checks that the table row is being loaded correctly", () => {
         </Tbody>
       </Table>
     );
-    userEvent.click(screen.getByText("Wow"));
+    await userEvent.click(screen.getByText("Wow"));
 
     expect(click).toBeCalled();
   });

@@ -3,9 +3,9 @@ import { useQuery, UseQueryResult } from "react-query";
 import { LectureApi } from "./LectureApi";
 
 const useClient = () => {
-    const [subjectApi] = useState(() => new LectureApi());
-    return subjectApi;
-  };
+  const [subjectApi] = useState(() => new LectureApi());
+  return subjectApi;
+};
 
 interface Lecture {
   lectureId: number;
@@ -15,7 +15,9 @@ interface Lecture {
 
 export const useLecture = (id: number): UseQueryResult<Lecture> => {
   const client = useClient();
-  return useQuery("lectures", () =>
-    client.createLectureBySubject(id).then((res) => res.data)
+  return useQuery(
+    "lectures",
+    () => client.createLectureBySubject(id).then((res) => res.data),
+    { refetchOnWindowFocus: false, refetchOnMount: false }
   );
 };

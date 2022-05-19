@@ -37,10 +37,12 @@ export function SwitchGuard() {
       );
     default:
       setUserDetail({ role: UserType.GUEST });
+    /*
       return (
         <Switch>
-          <Route path="/*" element={<NotFoundPage />} />
+          <Route path="/!*" element={<NotFoundPage />} />
         </Switch>
       );
+*/
   }
 }

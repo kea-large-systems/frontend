@@ -1,14 +1,12 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
 import { StudentHomepage } from "./StudentHomepage";
 import userEvent from "@testing-library/user-event";
-import { TestQueryProvider } from "../../test-utils/TestQueryProvider";
+import { render } from "../../test-util";
 
 describe("checks if homepage for student has a form to send class check in + view attendance button", () => {
   test("check for all expected view", () => {
     const { getByText, getByPlaceholderText } = render(
-      <TestQueryProvider>
-        <StudentHomepage onAttend={() => {}} />
-      </TestQueryProvider>
+      <StudentHomepage onAttend={() => {}} />
     );
     getByText("Attend Class");
     getByText("Check Attendance");
@@ -18,12 +16,7 @@ describe("checks if homepage for student has a form to send class check in + vie
   test("check if the page has the correct attendance behaviour", async () => {
     const click = jest.fn();
 
-    render(
-      <TestQueryProvider>
-        <StudentHomepage onAttend={click} />
-      </TestQueryProvider>
-    );
-
+    render(<StudentHomepage onAttend={click} />);
 
     const inputClassCode = screen.getByPlaceholderText(
       "Class Code"

@@ -1,15 +1,17 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import { AuthorizedNavigationBar, UserType } from "./AuthorizedNavigationBar";
 import { Router } from "react-router";
 import { createMemoryHistory } from "history";
+import { renderWithUseContextUser } from "../../../test-util";
 
 describe("checks that the authorized navigation bar is being loaded correctly", () => {
   test("checks if the student navbar is being rendered for a student user", () => {
     const history = createMemoryHistory();
-    render(
+    renderWithUseContextUser(
       <Router location={history.location} navigator={history}>
-        <AuthorizedNavigationBar userType={UserType.STUDENT} />
-      </Router>
+        <AuthorizedNavigationBar />
+      </Router>,
+      { role: UserType.STUDENT }
     );
 
     screen.getByText("Att. Class");
@@ -18,10 +20,11 @@ describe("checks that the authorized navigation bar is being loaded correctly", 
 
   test("checks if the teacher navbar is being rendered for a teacher user", () => {
     const history = createMemoryHistory();
-    render(
+    renderWithUseContextUser(
       <Router location={history.location} navigator={history}>
-        <AuthorizedNavigationBar userType={UserType.TEACHER} />
-      </Router>
+        <AuthorizedNavigationBar />
+      </Router>,
+      { role: UserType.TEACHER }
     );
 
     screen.getByText("Manage Classes");
@@ -29,10 +32,11 @@ describe("checks that the authorized navigation bar is being loaded correctly", 
 
   test("checks if the guest navbar is being rendered for a guest user", () => {
     const history = createMemoryHistory();
-    render(
+    renderWithUseContextUser(
       <Router location={history.location} navigator={history}>
-        <AuthorizedNavigationBar userType={UserType.GUEST} />
-      </Router>
+        <AuthorizedNavigationBar />
+      </Router>,
+      { role: UserType.GUEST }
     );
 
     screen.getByText("Login");

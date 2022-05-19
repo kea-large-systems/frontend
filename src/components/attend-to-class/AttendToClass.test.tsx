@@ -2,6 +2,7 @@ import { render } from "../../test-util";
 import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { AttendToClass } from "./AttendToClass";
+import { setLogger } from "react-query";
 
 describe("checks student attendance", () => {
   test("check if the page has the correct attendance behaviour", async () => {
@@ -17,8 +18,13 @@ describe("checks student attendance", () => {
       await screen.getByText("Thank you for attending the class");
     });
   });
-  /*
   test("check if the page has the correct behavior when attendance failed", async () => {
+    setLogger({
+      log: (log) => console.log(log),
+      warn: (warring) => console.log(warring),
+      error: () => {},
+    });
+
     render(<AttendToClass />);
 
     const inputClassCode = screen.getByPlaceholderText(
@@ -31,5 +37,4 @@ describe("checks student attendance", () => {
       await screen.getByText("Seems like you entered the wrong code");
     });
   });
-*/
 });

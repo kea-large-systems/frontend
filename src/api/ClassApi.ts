@@ -6,18 +6,9 @@ export const BASE_URL = process.env.REACT_APP_API_URL
 	: "";
 
 export class ClassApi {
-	accessToken?: string;
-
-	constructor(accessToken: string) {
-		this.accessToken = accessToken;
-	}
-
 	public getClassAttendanceCode(id: number) {
 		return axios({
-			headers: {
-				Authorization: `Bearer ${this.accessToken}`,
-				"X-MCU-Protocol-Version": "1",
-			},
+			withCredentials: true,
 			method: "get",
 			url: `${BASE_URL}/class-codes/${id}`,
 		});
@@ -25,10 +16,7 @@ export class ClassApi {
 
 	public deleteClassAttendanceCode(id: number) {
 		return axios({
-			headers: {
-				Authorization: `Bearer ${this.accessToken}`,
-				"X-MCU-Protocol-Version": "1",
-			},
+			withCredentials: true,
 			method: "delete",
 			url: `${BASE_URL}/class-codes/${id}`,
 		});
@@ -36,10 +24,7 @@ export class ClassApi {
 
 	public getAttendClass(code: string) {
 		return axios({
-			headers: {
-				Authorization: `Bearer ${this.accessToken}`,
-				"X-MCU-Protocol-Version": "1",
-			},
+			withCredentials: true,
 			method: "get",
 			url: `${BASE_URL}/class-codes/attend/${code}`,
 		});

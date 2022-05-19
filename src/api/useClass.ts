@@ -7,7 +7,7 @@ interface UseAttendClassMutation {
 }
 
 const UseClient = () => {
-  const [classApi] = useState(() => new ClassApi(""));
+  const [classApi] = useState(() => new ClassApi());
   return classApi;
 };
 

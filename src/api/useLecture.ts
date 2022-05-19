@@ -3,9 +3,9 @@ import { useQuery, UseQueryResult } from "react-query";
 import { LectureApi } from "./LectureApi";
 
 const useClient = () => {
-  const [subjectApi] = useState(() => new LectureApi(""));
-  return subjectApi;
-};
+    const [subjectApi] = useState(() => new LectureApi());
+    return subjectApi;
+  };
 
 interface Lecture {
   lectureId: number;

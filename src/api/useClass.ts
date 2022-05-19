@@ -13,7 +13,7 @@ const UseClient = () => {
 
 export const useGetClassAttendanceCode = (id: number) => {
   const client = UseClient();
-  return useQuery("classes", () => client.getClassAttendanceCode(id), {
+  return useQuery(["classes", id], () => client.getClassAttendanceCode(id), {
     refetchInterval: 5000,
     refetchOnWindowFocus: false,
     refetchOnMount: false,

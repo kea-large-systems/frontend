@@ -29,7 +29,7 @@ describe("attend to class component", () => {
     const inputClassCode = getByPlaceholderText("Class Code");
     await act(async () => {
       await userEvent.type(inputClassCode, "abcd1234", { delay: 0.1 });
-      userEvent.click(submitButton);
+      await userEvent.click(submitButton);
     });
     await waitFor(() => {
       //function that makes the assert to be executed several times before it is failing
@@ -42,7 +42,7 @@ describe("attend to class component", () => {
     const { getByText } = render(
       <AttendToClassForm isLoading={false} onSubmit={onSubmit} />
     );
-    userEvent.click(getByText("Attend Class"));
+    await userEvent.click(getByText("Attend Class"));
     await waitFor(() => {
       getByText("Please type the code from the teacher's monitor");
       expect(onSubmit).not.toBeCalled();

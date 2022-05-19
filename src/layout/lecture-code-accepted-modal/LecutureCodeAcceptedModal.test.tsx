@@ -18,10 +18,10 @@ describe("checks lecture code accepted modal", () => {
       screen.queryByRole("button", { name: /Close/i })
     ).not.toBeInTheDocument();
   });
-  test("checks if the model button is responsive", () => {
+  test("checks if the model button is responsive", async () => {
     const mockButton = jest.fn();
     render(<LectureCodeAcceptedModal isOpen={true} onClose={mockButton} />);
-    userEvent.click(screen.getByRole("button", { name: /Close/i }));
+    await userEvent.click(screen.getByRole("button", { name: /Close/i }));
     expect(mockButton).toBeCalled();
   });
 });

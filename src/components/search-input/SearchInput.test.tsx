@@ -9,13 +9,13 @@ describe("checks that the search input field is being loaded correctly", () => {
     expect(getByPlaceholderText("Search")).toBeVisible();
   });
 
-  test("checks if the search field can be typed in", () => {
+  test("checks if the search field can be typed in", async () => {
     const expectedValue = "Hello World!";
 
     const { getByPlaceholderText } = render(<SearchInput />);
 
     const inputField = getByPlaceholderText("Search") as HTMLInputElement;
-    userEvent.type(inputField, expectedValue);
+    await userEvent.type(inputField, expectedValue);
 
     expect(inputField).toHaveValue(expectedValue);
   });

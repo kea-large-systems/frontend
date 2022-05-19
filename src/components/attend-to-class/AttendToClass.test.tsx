@@ -11,7 +11,7 @@ describe("checks student attendance", () => {
       "Class Code"
     ) as HTMLInputElement;
     await userEvent.type(inputClassCode, "good-code", { delay: 0.1 });
-    userEvent.click(screen.getByText("Attend Class"));
+    await userEvent.click(screen.getByText("Attend Class"));
 
     await waitFor(async () => {
       await screen.getByText("Thank you for attending the class");
@@ -24,7 +24,7 @@ describe("checks student attendance", () => {
       "Class Code"
     ) as HTMLInputElement;
     await userEvent.type(inputClassCode, "bad-code", { delay: 0.1 });
-    userEvent.click(screen.getByText("Attend Class"));
+    await userEvent.click(screen.getByText("Attend Class"));
 
     await waitFor(async () => {
       await screen.getByText("Seems like you entered the wrong code");

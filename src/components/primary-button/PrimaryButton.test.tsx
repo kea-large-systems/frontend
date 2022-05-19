@@ -9,7 +9,7 @@ describe("checks that the primary button is being loaded correctly", () => {
     screen.getByRole("button", { name: /Primary/i });
   });
 
-  test("checks if the button triggers a function when clicked", () => {
+  test("checks if the button triggers a function when clicked", async () => {
     const click = jest.fn();
     render(
       <PrimaryButton onClick={click}>
@@ -17,7 +17,7 @@ describe("checks that the primary button is being loaded correctly", () => {
       </PrimaryButton>
     );
 
-    userEvent.click(screen.getByText("Primary"));
+    await userEvent.click(screen.getByText("Primary"));
 
     expect(click).toBeCalled();
   });

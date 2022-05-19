@@ -1,21 +1,10 @@
 import { Button, VStack } from "@chakra-ui/react";
-import {
-  AttendToClass,
-  AttendClassFormValues,
-} from "../../components/attend-to-class/AttendToClass";
-import { useAttendClass } from "../../api/useClass";
+import { AttendToClass } from "../../components/attend-to-class/AttendToClass";
 
-interface StudentHomepageProps {
-  onAttend: () => void;
-}
-
-export function StudentHomepage({onAttend}: StudentHomepageProps) {
-  const { mutate } = useAttendClass();
-
-  const onSubmit = (_data: AttendClassFormValues) => { mutate({code: _data.classCode}, {onSuccess: onAttend})};
+export function StudentHomepage() {
   return (
     <VStack>
-      <AttendToClass onSubmit={onSubmit} />
+      <AttendToClass />
       <Button variant="attend" bgColor="#5D5FEF">
         Check Attendance
       </Button>

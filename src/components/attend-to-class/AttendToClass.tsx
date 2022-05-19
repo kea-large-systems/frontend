@@ -1,52 +1,38 @@
+import { LectureCodeAcceptedModal } from "../../layout/lecture-code-accepted-modal/LectureCodeAcceptedModal";
+import { useDisclosure, useToast, Wrap } from "@chakra-ui/react";
+import { useAttendClass } from "../../api/useClass";
 import {
-  Box,
-  Button,
-  FormControl,
-  FormErrorMessage,
-  Input,
-  VStack,
-} from "@chakra-ui/react";
-import { useForm } from "react-hook-form";
-interface AttendToClassFormProps {
-  onSubmit: (data: AttendClassFormValues) => void;
-}
+  AttendClassFormValues,
+  AttendToClassForm,
+} from "./attend-to-class-form/AttendToClassForm";
 
-export interface AttendClassFormValues {
-  classCode: string;
-}
+export function AttendToClass() {
+  const toast = useToast();
+  const { mutate, isLoading } = useAttendClass();
 
-export function AttendToClass({ onSubmit }: AttendToClassFormProps) {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<AttendClassFormValues>();
+  const onSubmit = (_data: AttendClassFormValues) => {
+    mutate(
+      { code: _data.classCode },
+      {
+        onSuccess: () => {
+          onOpen();
+        },
+        onError: () => {
+          toast({
+            title: "Seems like you entered the wrong code",
+            status: "error",
+          });
+        },
+      }
+    );
+  };
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <VStack pt={100} px={100}>
-      <FormControl isInvalid={errors.classCode?.message != null}>
-        <VStack>
-          <Input
-            variant="flushed"
-            placeholder="Class Code"
-            width="250px"
-            bgColor="#F0F0F1"
-            {...register("classCode", {
-              required: {
-                value: true,
-                message: "Please type the code from the teacher's monitor",
-              },
-            })}
-          />{" "}
-          <Box height={5} color="transparent">
-            <FormErrorMessage fontSize="small">
-              {errors.classCode?.message}
-            </FormErrorMessage>
-          </Box>
-        </VStack>
-      </FormControl>
-      <Button variant="attend" onClick={handleSubmit(onSubmit)}>
-        Attend Class
-      </Button>
-    </VStack>
+    <>
+      <AttendToClassForm onSubmit={onSubmit} isLoading={isLoading} />
+      <Wrap alignItems="center">
+        <LectureCodeAcceptedModal isOpen={isOpen} onClose={onClose} />
+      </Wrap>
+    </>
   );
 }

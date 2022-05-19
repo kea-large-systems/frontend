@@ -5,7 +5,7 @@ import { TeacherSubjectManagement } from "../layout/teacher-subject-management/T
 import { LoginPage } from "../layout/login-page/LoginPage";
 import { NotFoundPage } from "../layout/not-found-page/NotFoundPage";
 import { LoginSuccess } from "../layout/login-page/login-success/LoginSuccess";
-import { AttendanceCodePage } from "../layout/attendance-code-page/AttendanceCodePage";
+import { AttendancePage } from "../layout/attendance-page/AttendancePage";
 import { useContext } from "react";
 import { UserContext } from "../provider/UserProvider";
 
@@ -31,7 +31,7 @@ export function SwitchGuard() {
       return (
         <Switch>
           <Route path="/" element={<TeacherSubjectManagement />} />
-          <Route element={<AttendanceCodePage />} path="/attendance-code" />
+          <Route element={<AttendancePage />} path="/attendance-code" />
           <Route path="/*" element={<NotFoundPage />} />
         </Switch>
       );

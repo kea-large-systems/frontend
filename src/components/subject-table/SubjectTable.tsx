@@ -1,18 +1,11 @@
-import {
-  Table,
-  TableContainer,
-  Tbody,
-  Th,
-  Thead,
-  Tr,
-} from "@chakra-ui/react";
+import { Table, TableContainer, Tbody, Th, Thead, Tr } from "@chakra-ui/react";
 import { ReactElement } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoadingTable } from "../loading-table/LoadingTable";
 import { TableRow } from "../table-row/TableRow";
 
 export interface Subject {
-  id: number;
+  subjectId: number;
   name: string;
   class: string;
   studentsCount: number;
@@ -32,9 +25,9 @@ export function SubjectTable({
     return subjects?.map((subject) => {
       return (
         <TableRow
-          key={subject.id}
+          key={subject.subjectId}
           data={[subject.class, subject.name, subject.studentsCount]}
-          onClick={() => navigate(`/attendance-code`, {state: subject})}
+          onClick={() => navigate(`/attendance-code`, { state: subject })}
         />
       );
     });

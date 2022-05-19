@@ -7,7 +7,7 @@ import { BASE_URL } from "./mockConfig";
 export const getClassCode = rest.get(
   `${BASE_URL}/class-codes/:id`,
   (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json({ code: Math.random().toString() }));
+    return res(ctx.status(200), ctx.json({ code: "123456" }));
   }
 );
 

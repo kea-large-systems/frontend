@@ -1,28 +1,22 @@
 import { BrowserRouter } from "react-router-dom";
-import {
-  AuthorizedNavigationBar,
-  UserType,
-} from "./layout/navigation-bar/authorized-navigation-bar/AuthorizedNavigationBar";
+import { AuthorizedNavigationBar } from "./layout/navigation-bar/authorized-navigation-bar/AuthorizedNavigationBar";
 import { CentralLayout } from "./layout/central-layout/CentralLayout";
-import { useLocalStorage } from "./hooks/useLocalStorage";
 import { SwitchGuard } from "./route/SwitchGuard";
+import { useContext } from "react";
+import { UserContext, UserProvider } from "./provider/UserProvider";
 
 function App() {
-  const [userType, setUserType] = useLocalStorage("userType", UserType.GUEST);
-  const [userId, setUserId] = useLocalStorage("userId", "");
-  const [, setUsername] = useLocalStorage("userName", "");
+  const { userDetail } = useContext(UserContext);
   return (
     <BrowserRouter>
-      <AuthorizedNavigationBar userType={userType} />
-      <CentralLayout>
-        <SwitchGuard
-          userId={userId}
-          userType={userType}
-          setUserType={setUserType}
-          setUserId={setUserId}
-          setUsername={setUsername}
-        />
-      </CentralLayout>
+      <UserProvider value={userDetail}>
+        <>
+          <AuthorizedNavigationBar />
+          <CentralLayout>
+            <SwitchGuard />
+          </CentralLayout>
+        </>
+      </UserProvider>
     </BrowserRouter>
   );
 }

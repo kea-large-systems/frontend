@@ -6,18 +6,9 @@ export const BASE_URL = process.env.REACT_APP_API_URL
 	: "";
 
 export class LectureApi {
-	accessToken?: string;
-
-	constructor(accessToken: string) {
-		this.accessToken = accessToken;
-	}
-
 	public createLectureBySubject(id: number) {
 		return axios({
-			headers: {
-				Authorization: `Bearer ${this.accessToken}`,
-				"X-MCU-Protocol-Version": "1",
-			},
+			withCredentials: true,
 			method: "post",
 			url: `${BASE_URL}/lectures`,
             data: {

@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import { LectureApi } from "./LectureApi";
 
 const useClient = () => {
-    const [subjectApi] = useState(() => new LectureApi(""));
+    const [subjectApi] = useState(() => new LectureApi());
     return subjectApi;
   };
 

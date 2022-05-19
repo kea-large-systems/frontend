@@ -8,7 +8,7 @@ import { screen, waitFor } from "@testing-library/react";
 describe("checks if the the page shown currently", () => {
   test("checks if the header, the button and the code is being shown", async () => {
     const subject: Subject = {
-      subjectId: 2,
+      subjectId: 1,
       name: "Testing",
       class: "sw22",
       studentsCount: 30,

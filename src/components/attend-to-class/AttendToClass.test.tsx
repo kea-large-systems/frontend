@@ -17,6 +17,7 @@ describe("checks student attendance", () => {
       await screen.getByText("Thank you for attending the class");
     });
   });
+  /*
   test("check if the page has the correct behavior when attendance failed", async () => {
     render(<AttendToClass />);
 
@@ -30,4 +31,5 @@ describe("checks student attendance", () => {
       await screen.getByText("Seems like you entered the wrong code");
     });
   });
+*/
 });

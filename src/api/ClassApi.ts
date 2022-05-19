@@ -6,8 +6,6 @@ export const BASE_URL = process.env.REACT_APP_API_URL
 	: "";
 
 export class ClassApi {
-	constructor() {}
-
 	public getClassAttendanceCode(id: number) {
 		return axios({
 			withCredentials: true,

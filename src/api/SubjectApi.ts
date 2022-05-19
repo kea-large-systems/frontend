@@ -6,8 +6,6 @@ export const BASE_URL = process.env.REACT_APP_API_URL
   : "";
 
 export class SubjectApi {
-	constructor() {}
-
   public apiGetSubjects(teacherId: string) {
     return axios({
       withCredentials: true,

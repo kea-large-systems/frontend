@@ -18,7 +18,10 @@ const customRender = (
   options?: Omit<RenderOptions, "wrapper">
 ) => render(ui, { wrapper: AllTheProviders, ...options });
 
-const renderWithUseContextUser = (ui: ReactElement, userDetail: UserDetail) => {
+const renderWithUseContextUser = (
+  ui: ReactElement,
+  userDetail: UserDetail = {}
+) => {
   const Wrapper: FC = ({ children }) => {
     return (
       <UserProvider value={userDetail}>

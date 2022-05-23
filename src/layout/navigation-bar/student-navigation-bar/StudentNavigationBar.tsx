@@ -1,7 +1,7 @@
 import { RollCallNavigationBar } from "../roll-call-navigation-bar/RollCallNavigationBar";
 import NavigationBarLink from "../navigation-bar-link/NavigationBarLink";
 import { Box, Button, HStack } from "@chakra-ui/react";
-import { LogoutButton } from "../LogoutButton";
+import { LogoutButton } from "../../../components/logout-button/LogoutButton";
 
 export function StudentNavigationBar() {
   return (

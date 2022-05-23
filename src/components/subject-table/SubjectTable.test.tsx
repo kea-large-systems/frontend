@@ -28,10 +28,10 @@ describe("checks that the class table is being loaded correctly", () => {
     screen.getByText("STUDENTS");
   });
 
-  test("checks that the table is filled with the right data", () => {
+  test("checks that the table is filled with< the right data", () => {
     const tableData: Subject[] = [
-      { class: "Class1", name: "Subject1", studentsCount: 10, id: 1 },
-      { class: "Class2", name: "Subject2", studentsCount: 20, id: 2 },
+      { class: "Class1", name: "Subject1", studentsCount: 10, subjectId: 1 },
+      { class: "Class2", name: "Subject2", studentsCount: 20, subjectId: 2 },
     ];
 
     const history = createMemoryHistory();

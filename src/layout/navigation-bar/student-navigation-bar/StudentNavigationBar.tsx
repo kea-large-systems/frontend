@@ -20,7 +20,7 @@ export function StudentNavigationBar() {
         </NavigationBarLink>
       </HStack>
       <Box>
-        <NavigationBarLink path="/logout">
+        <NavigationBarLink path="/">
           <LogoutButton />
         </NavigationBarLink>
       </Box>

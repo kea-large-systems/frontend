@@ -8,6 +8,7 @@ import { LoginSuccess } from "../layout/login-page/login-success/LoginSuccess";
 import { AttendancePage } from "../layout/attendance-page/AttendancePage";
 import { useContext } from "react";
 import { UserContext } from "../provider/UserProvider";
+import { StudentAttendanceOverview } from "../layout/student-attendance-overview/StudentAttendanceOverview";
 
 export function SwitchGuard() {
   const { userDetail, setUserDetail } = useContext(UserContext);
@@ -24,6 +25,7 @@ export function SwitchGuard() {
       return (
         <Switch>
           <Route path="/" element={<StudentHomepage />} />
+          <Route path="/checkatt" element={<StudentAttendanceOverview />} />
           <Route path="/*" element={<NotFoundPage />} />
         </Switch>
       );

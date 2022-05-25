@@ -9,6 +9,7 @@ import { AttendancePage } from "../layout/attendance-page/AttendancePage";
 import { useContext } from "react";
 import { UserContext } from "../provider/UserProvider";
 import { StudentAttendanceOverview } from "../layout/student-attendance-overview/StudentAttendanceOverview";
+import { ClassAttendanceOverview } from "../layout/class-attendance-overview/ClassAttendanceOverview";
 
 export function SwitchGuard() {
   const { userDetail, setUserDetail } = useContext(UserContext);
@@ -33,7 +34,8 @@ export function SwitchGuard() {
       return (
         <Switch>
           <Route path="/" element={<TeacherSubjectManagement />} />
-          <Route element={<AttendancePage />} path="/attendance-code" />
+          <Route path="/attendance-code" element={<AttendancePage />} />
+          <Route path="/class-attendance-overview" element={<ClassAttendanceOverview />} />
           <Route path="/*" element={<NotFoundPage />} />
         </Switch>
       );

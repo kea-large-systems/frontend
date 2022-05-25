@@ -27,6 +27,9 @@ export function AttendanceView({ subject }: AttendanceViewProps) {
       <Button variant="secondary" onClick={handleClick}>
         Stop Attendance
       </Button>
+      <Button variant="secondary" onClick={() => navigate(`/class-attendance-overview`, { state: subject.studentsCount })}>
+        See class attendance
+      </Button>
     </>
   );
 }

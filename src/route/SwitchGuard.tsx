@@ -13,7 +13,7 @@ function UnknownUser() {
   const { setUserDetail } = useContext(UserContext);
   useEffect(() => {
     setUserDetail({ role: UserType.GUEST });
-  }, []);
+  }, [setUserDetail]);
   return null;
 }
 

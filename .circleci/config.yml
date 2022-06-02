@@ -9,7 +9,7 @@ jobs:
       - node/install-packages:
           pkg-manager: yarn
       - run: 
-          command: yarn --frozen-lockfile
+          command: yarn install --frozen-lockfile
           name: install node packages
       - run:
           command: yarn test

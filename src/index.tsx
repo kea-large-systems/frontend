@@ -7,8 +7,6 @@ import { theme } from "./theme/Theme";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { worker } from "./mocks/browser";
 
-worker.start();
-
 const queryClient = new QueryClient();
 
 ReactDOM.render(

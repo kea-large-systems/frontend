@@ -1,14 +1,23 @@
-import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import { StudentHomepage } from "./layout/student-homepage/StudentHomepage";
-import { StudentNavigationBar } from "./layout/navigation-bar/student-navigation-bar/StudentNavigationBar";
+import { AuthorizedNavigationBar } from "./layout/navigation-bar/authorized-navigation-bar/AuthorizedNavigationBar";
+import { CentralLayout } from "./layout/central-layout/CentralLayout";
+import { SwitchGuard } from "./route/SwitchGuard";
+import { useContext } from "react";
+import { UserContext, UserProvider } from "./provider/UserProvider";
 
 function App() {
+  const { userDetail } = useContext(UserContext);
   return (
-    <BrowserRouter>
-      <StudentNavigationBar />
-      <StudentHomepage />
-    </BrowserRouter>
+    <UserProvider value={userDetail}>
+      <BrowserRouter>
+        <>
+          <AuthorizedNavigationBar />
+          <CentralLayout>
+            <SwitchGuard />
+          </CentralLayout>
+        </>
+      </BrowserRouter>
+    </UserProvider>
   );
 }
 

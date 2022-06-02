@@ -4,12 +4,20 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ChakraProvider } from "@chakra-ui/react";
 import { theme } from "./theme/Theme";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { worker } from "./mocks/browser";
+
+worker.start();
+
+const queryClient = new QueryClient();
 
 ReactDOM.render(
   <React.StrictMode>
-    <ChakraProvider theme={theme}>
-      <App />
-    </ChakraProvider>
+    <QueryClientProvider client={queryClient}>
+      <ChakraProvider theme={theme}>
+        <App />
+      </ChakraProvider>
+    </QueryClientProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

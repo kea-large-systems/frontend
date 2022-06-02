@@ -6,25 +6,28 @@ import { createMemoryHistory } from "history";
 
 describe("checks if the navigation bar link works correctly", () => {
   test("checks if the link exists", () => {
+    const history = createMemoryHistory();
     const { getByText } = render(
-      <NavigationBarLink path={"/home"}>
-        <span>some text</span>
-      </NavigationBarLink>
+      <Router location={history.location} navigator={history}>
+        <NavigationBarLink path={"/home"}>
+          <span>some text</span>
+        </NavigationBarLink>
+      </Router>
     );
     getByText("some text");
   });
 
-  test("checks if the link button alters the url on click", () => {
+  test("checks if the link button alters the url on click", async () => {
     const history = createMemoryHistory();
     const { getByText } = render(
       <Router location={history.location} navigator={history}>
         <NavigationBarLink path="/home">home</NavigationBarLink>
       </Router>
     );
-    userEvent.click(getByText("home"));
+    await userEvent.click(getByText("home"));
     expect(history.location.pathname).toBe("/home");
   });
-  test("checks if links can alter between different urls on several clicks", () => {
+  test("checks if links can alter between different urls on several clicks", async () => {
     const history = createMemoryHistory();
     const { getByText } = render(
       <Router location={history.location} navigator={history}>
@@ -32,9 +35,9 @@ describe("checks if the navigation bar link works correctly", () => {
         <NavigationBarLink path="/next">next</NavigationBarLink>
       </Router>
     );
-    userEvent.click(getByText("home"));
+    await userEvent.click(getByText("home"));
     expect(history.location.pathname).toBe("/home");
-    userEvent.click(getByText("next"));
+    await userEvent.click(getByText("next"));
     expect(history.location.pathname).toBe("/next");
   });
 });

@@ -8,6 +8,9 @@ jobs:
       - checkout
       - node/install-packages:
           pkg-manager: yarn
+      - run: 
+          command: yarn
+          name: install node packages
       - run:
           command: yarn test
           name: Run tests

@@ -1,49 +1,40 @@
-import { act, getByText, render, waitFor } from "@testing-library/react";
+import { render } from "../../test-util";
+import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { AttendToClass } from "./AttendToClass";
+import { setLogger } from "react-query";
 
-describe("attend to class component", () => {
-  test("checks if input field for class code + butten to check in are exist", () => {
-    const { getByText, getByPlaceholderText } = render(
-      <AttendToClass onSubmit={() => {}} />
-    );
-    getByText("Attend Class");
-    getByPlaceholderText("Class Code");
-  });
-  test("checks if input field can hold a value", async () => {
-    const { getByPlaceholderText } = render(
-      <AttendToClass onSubmit={() => {}} />
-    );
-    const inputClassCode = getByPlaceholderText(
+describe("checks student attendance", () => {
+  test("check if the page has the correct attendance behaviour", async () => {
+    render(<AttendToClass />);
+
+    const inputClassCode = screen.getByPlaceholderText(
       "Class Code"
     ) as HTMLInputElement;
-    await userEvent.type(inputClassCode, "abcd1234", { delay: 0.1 });
-    expect(inputClassCode.value).toBe("abcd1234");
-  });
-  test("checks that on submit is being called with valid input", async () => {
-    const onSubmit = jest.fn();
-    const { getByText, getByPlaceholderText } = render(
-      <AttendToClass onSubmit={onSubmit} />
-    );
-    const submitButton = getByText("Attend Class");
-    const inputClassCode = getByPlaceholderText("Class Code");
-    await act(async () => {
-      await userEvent.type(inputClassCode, "abcd1234", { delay: 0.1 });
-      userEvent.click(submitButton);
-    });
-    await waitFor(() => {
-      //function that makes the assert to be executed several times before it is failing
-      const mockResult = onSubmit.mock.calls[0][0];
-      expect(mockResult.classCode).toBe("abcd1234");
+    await userEvent.type(inputClassCode, "good-code", { delay: 0.1 });
+    await userEvent.click(screen.getByText("Attend Class"));
+
+    await waitFor(async () => {
+      await screen.getByText("Thank you for attending the class");
     });
   });
-  test("checks that error is shown when submitting is empty", async () => {
-    const onSubmit = jest.fn();
-    const { getByText } = render(<AttendToClass onSubmit={onSubmit} />);
-    userEvent.click(getByText("Attend Class"));
-    await waitFor(() => {
-      getByText("Please type the code from the teacher's monitor");
-      expect(onSubmit).not.toBeCalled();
+  test("check if the page has the correct behavior when attendance failed", async () => {
+    setLogger({
+      log: (log) => console.log(log),
+      warn: (warring) => console.log(warring),
+      error: () => {},
+    });
+
+    render(<AttendToClass />);
+
+    const inputClassCode = screen.getByPlaceholderText(
+      "Class Code"
+    ) as HTMLInputElement;
+    await userEvent.type(inputClassCode, "bad-code", { delay: 0.1 });
+    await userEvent.click(screen.getByText("Attend Class"));
+
+    await waitFor(async () => {
+      await screen.getByText("Seems like you entered the wrong code");
     });
   });
 });

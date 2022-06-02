@@ -5,7 +5,9 @@ import { useMutation, useQuery } from "react-query";
 interface UseAttendClassMutation {
   code: string;
 }
-
+export const attendanceQueryKey = {
+  classes: "classes",
+};
 const UseClient = () => {
   const [classApi] = useState(() => new ClassApi());
   return classApi;
@@ -13,11 +15,15 @@ const UseClient = () => {
 
 export const useGetClassAttendanceCode = (id: number) => {
   const client = UseClient();
-  return useQuery(["classes", id], () => client.getClassAttendanceCode(id), {
-    refetchInterval: 5000,
-    refetchOnWindowFocus: false,
-    refetchOnMount: false,
-  });
+  return useQuery(
+    [attendanceQueryKey.classes, id],
+    () => client.getClassAttendanceCode(id),
+    {
+      refetchInterval: 5000,
+      refetchOnWindowFocus: false,
+      refetchOnMount: false,
+    }
+  );
 };
 
 interface DeleteClassAttendanceCode {

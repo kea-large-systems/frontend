@@ -2,7 +2,10 @@ import { useLecture } from "../../../api/useLecture";
 import { Subject } from "../../../components/subject-table/SubjectTable";
 import { AttendanceCode } from "./AttendanceCode/AttendanceCode";
 import { Button, Text } from "@chakra-ui/react";
-import { useDeleteClassAttendanceCode } from "../../../api/useClass";
+import {
+  attendanceQueryKey,
+  useDeleteClassAttendanceCode,
+} from "../../../api/useClass";
 import { useNavigate } from "react-router-dom";
 import { useQueryClient } from "react-query";
 
@@ -20,7 +23,10 @@ export function AttendanceView({ subject }: AttendanceViewProps) {
         { id: lecture.lectureId },
         {
           onSuccess: () => {
-            queryClient.invalidateQueries(["classes", subject.subjectId]);
+            queryClient.invalidateQueries([
+              attendanceQueryKey.classes,
+              subject.subjectId,
+            ]);
             navigate(-1);
           },
         }

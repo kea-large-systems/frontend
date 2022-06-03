@@ -30,6 +30,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test-coverage": "npx react-scripts test --coverage --watchAll",
+    "test-coverage-report": "npx react-scripts test --coverage --watchAll --coverageDirectory=coverage/jest",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

@@ -24,9 +24,7 @@ describe("checks student attendance", () => {
       warn: (warring) => console.log(warring),
       error: () => {},
     });
-
     render(<AttendToClass />);
-
     const inputClassCode = screen.getByPlaceholderText(
       "Class Code"
     ) as HTMLInputElement;

@@ -5,9 +5,6 @@ import reportWebVitals from "./reportWebVitals";
 import { ChakraProvider } from "@chakra-ui/react";
 import { theme } from "./theme/Theme";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { worker } from "./mocks/browser";
-
-worker.start();
 
 const queryClient = new QueryClient();
 

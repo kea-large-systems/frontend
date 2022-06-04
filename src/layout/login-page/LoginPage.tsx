@@ -10,7 +10,9 @@ export function LoginPage() {
       <Button
         leftIcon={<Icon as={BsMicrosoft} />}
         onClick={() =>
-          window.location.replace("http://localhost:4200/auth/login/microsoft")
+          window.location.replace(
+            `${process.env.REACT_APP_API_URL}/auth/login/microsoft`
+          )
         }
       >
         Sign in with Microsoft

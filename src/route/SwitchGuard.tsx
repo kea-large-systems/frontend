@@ -6,11 +6,19 @@ import { LoginPage } from "../layout/login-page/LoginPage";
 import { NotFoundPage } from "../layout/not-found-page/NotFoundPage";
 import { LoginSuccess } from "../layout/login-page/login-success/LoginSuccess";
 import { AttendancePage } from "../layout/attendance-page/AttendancePage";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { UserContext } from "../provider/UserProvider";
 
+function UnknownUser() {
+  const { setUserDetail } = useContext(UserContext);
+  useEffect(() => {
+    setUserDetail({ role: UserType.GUEST });
+  }, [setUserDetail]);
+  return null;
+}
+
 export function SwitchGuard() {
-  const { userDetail, setUserDetail } = useContext(UserContext);
+  const { userDetail } = useContext(UserContext);
   switch (userDetail.role) {
     case UserType.GUEST:
       return (
@@ -36,11 +44,6 @@ export function SwitchGuard() {
         </Switch>
       );
     default:
-      setUserDetail({ role: UserType.GUEST });
-      return (
-        <Switch>
-          <Route path="/*" element={<NotFoundPage />} />
-        </Switch>
-      );
+      return <UnknownUser />;
   }
 }

@@ -1,21 +1,30 @@
 import { useState } from "react";
 import { ClassApi } from "./ClassApi";
 import { useMutation, useQuery } from "react-query";
+import { Lecture } from "./useLecture";
 
 interface UseAttendClassMutation {
   code: string;
 }
-
+export const attendanceQueryKey = {
+  classes: "classes",
+};
 const UseClient = () => {
   const [classApi] = useState(() => new ClassApi());
   return classApi;
 };
 
-export const useGetClassAttendanceCode = (id: number) => {
+export const useGetClassAttendanceCode = (lecture: Lecture) => {
   const client = UseClient();
-  return useQuery("classes", () => client.getClassAttendanceCode(id), {
-    refetchInterval: 5000,
-  });
+  return useQuery(
+    [attendanceQueryKey.classes, lecture.subjectId],
+    () => client.getClassAttendanceCode(lecture.lectureId),
+    {
+      refetchInterval: 5000,
+      refetchOnWindowFocus: false,
+      refetchOnMount: true,
+    }
+  );
 };
 
 interface DeleteClassAttendanceCode {

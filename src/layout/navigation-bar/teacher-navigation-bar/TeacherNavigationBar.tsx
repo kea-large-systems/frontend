@@ -7,14 +7,13 @@ import { UserContext } from "../../../provider/UserProvider";
 import { UserType } from "../authorized-navigation-bar/AuthorizedNavigationBar";
 
 export function TeacherNavigationBar() {
-  
   const { setUserDetail } = useContext(UserContext);
 
   const logout = () => {
     setUserDetail({
-        username: "",
-        role: UserType.GUEST,
-        userId: "",
+      username: "",
+      role: UserType.GUEST,
+      userId: "",
     });
   };
 
@@ -26,7 +25,7 @@ export function TeacherNavigationBar() {
             Role Call
           </Button>
         </NavigationBarLink>
-        <NavigationBarLink path="/manage-classes">
+        <NavigationBarLink path="/">
           <Button variant="navigationLink">Manage Classes</Button>
         </NavigationBarLink>
       </HStack>

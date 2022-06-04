@@ -8,6 +8,8 @@ import { LoginSuccess } from "../layout/login-page/login-success/LoginSuccess";
 import { AttendancePage } from "../layout/attendance-page/AttendancePage";
 import { useContext, useEffect } from "react";
 import { UserContext } from "../provider/UserProvider";
+import { StudentAttendanceOverview } from "../layout/student-attendance-overview/StudentAttendanceOverview";
+import { ClassAttendanceOverview } from "../layout/class-attendance-overview/ClassAttendanceOverview";
 
 function UnknownUser() {
   const { setUserDetail } = useContext(UserContext);
@@ -32,6 +34,7 @@ export function SwitchGuard() {
       return (
         <Switch>
           <Route path="/" element={<StudentHomepage />} />
+          <Route path="/checkatt" element={<StudentAttendanceOverview />} />
           <Route path="/*" element={<NotFoundPage />} />
         </Switch>
       );
@@ -39,7 +42,8 @@ export function SwitchGuard() {
       return (
         <Switch>
           <Route path="/" element={<TeacherSubjectManagement />} />
-          <Route element={<AttendancePage />} path="/attendance-code" />
+          <Route path="/attendance-code" element={<AttendancePage />} />
+          <Route path="/class-attendance-overview" element={<ClassAttendanceOverview />} />
           <Route path="/*" element={<NotFoundPage />} />
         </Switch>
       );

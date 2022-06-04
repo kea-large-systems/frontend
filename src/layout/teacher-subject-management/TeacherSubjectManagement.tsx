@@ -6,6 +6,7 @@ import { SubjectTable } from "../../components/subject-table/SubjectTable";
 import { useSubject } from "../../api/useSubject";
 import { useContext } from "react";
 import { UserContext } from "../../provider/UserProvider";
+
 export function TeacherSubjectManagement() {
   const { userDetail } = useContext(UserContext);
   const { data: subjects, isLoading } = useSubject(userDetail.userId!!);
@@ -15,7 +16,7 @@ export function TeacherSubjectManagement() {
       <MainCard>
         <HStack width={"100%"} key="card-header">
           <SearchInput />
-          <PrimaryButton width={"15vw"}>Add</PrimaryButton>
+          <PrimaryButton key="addClass" width={"15vw"}>Add</PrimaryButton>
         </HStack>
         <SubjectTable data={subjects?.data} isLoading={isLoading} />
       </MainCard>

@@ -14,6 +14,7 @@ interface AttendanceViewProps {
 }
 
 export function AttendanceView({ subject }: AttendanceViewProps) {
+  console.log(subject);
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { mutate } = useDeleteClassAttendanceCode();
@@ -34,11 +35,14 @@ export function AttendanceView({ subject }: AttendanceViewProps) {
   };
 
   const { data: lecture } = useLecture(subject.subjectId);
+
   return (
     <>
       {lecture?.name ? <Text fontSize="2xl">{lecture.name}</Text> : null}
       {lecture?.lectureId ? (
-        <AttendanceCode lectureId={lecture.lectureId} />
+        <AttendanceCode
+          lecture={{ ...lecture, subjectId: subject.subjectId + "" }}
+        />
       ) : null}
       <Button variant="secondary" onClick={handleClick}>
         Stop Attendance

@@ -7,13 +7,15 @@ const useClient = () => {
   return subjectApi;
 };
 
-interface Lecture {
+export interface Lecture {
   lectureId: number;
   subjectId: string;
   name: string;
 }
 
-export const useLecture = (id: number): UseQueryResult<Lecture> => {
+export const useLecture: (id: number) => UseQueryResult<Lecture> = (
+  id: number
+): UseQueryResult<Lecture> => {
   const client = useClient();
   return useQuery(
     "lectures",

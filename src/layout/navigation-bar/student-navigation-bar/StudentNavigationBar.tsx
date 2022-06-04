@@ -7,14 +7,13 @@ import { useContext } from "react";
 import { UserContext } from "../../../provider/UserProvider";
 
 export function StudentNavigationBar() {
-  
   const { setUserDetail } = useContext(UserContext);
 
   const logout = () => {
     setUserDetail({
-        username: "",
-        role: UserType.GUEST,
-        userId: "",
+      username: "",
+      role: UserType.GUEST,
+      userId: "",
     });
   };
 
@@ -26,7 +25,7 @@ export function StudentNavigationBar() {
             Role Call
           </Button>
         </NavigationBarLink>
-        <NavigationBarLink path="/attclass">
+        <NavigationBarLink path="/">
           <Button variant="navigationLink">Att. Class</Button>
         </NavigationBarLink>
         <NavigationBarLink path="/checkatt">

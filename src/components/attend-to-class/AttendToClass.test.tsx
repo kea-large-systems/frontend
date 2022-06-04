@@ -83,4 +83,16 @@ describe("checks student attendance", () => {
       await screen.getByText("Code should contains uppercase letters only");
     });
   });
+  test("gives an error message if the code contains special characters", async () => {
+    render(<AttendToClass />);
+    const inputClassCode = screen.getByPlaceholderText(
+      "Class Code"
+    ) as HTMLInputElement;
+    await userEvent.type(inputClassCode, "@£AAA/&F", { delay: 0.1 });
+    await userEvent.click(screen.getByText("Attend Class"));
+
+    await waitFor(async () => {
+      await screen.getByText("Code should contains uppercase letters only");
+    });
+  });
 });

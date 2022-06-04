@@ -16,7 +16,6 @@ const UseClient = () => {
 
 export const useGetClassAttendanceCode = (lecture: Lecture) => {
   const client = UseClient();
-  console.log("lecture ", lecture);
   return useQuery(
     [attendanceQueryKey.classes, lecture.subjectId],
     () => client.getClassAttendanceCode(lecture.lectureId),

@@ -14,7 +14,6 @@ interface AttendanceViewProps {
 }
 
 export function AttendanceView({ subject }: AttendanceViewProps) {
-  console.log(subject);
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { mutate } = useDeleteClassAttendanceCode();

@@ -11,7 +11,7 @@ describe("checks student attendance", () => {
     const inputClassCode = screen.getByPlaceholderText(
       "Class Code"
     ) as HTMLInputElement;
-    await userEvent.type(inputClassCode, "good-code", { delay: 0.1 });
+    await userEvent.type(inputClassCode, "GOODCODE", { delay: 0.1 });
     await userEvent.click(screen.getByText("Attend Class"));
 
     await waitFor(async () => {
@@ -28,11 +28,59 @@ describe("checks student attendance", () => {
     const inputClassCode = screen.getByPlaceholderText(
       "Class Code"
     ) as HTMLInputElement;
-    await userEvent.type(inputClassCode, "bad-code", { delay: 0.1 });
+    await userEvent.type(inputClassCode, "BADCODEB", { delay: 0.1 });
     await userEvent.click(screen.getByText("Attend Class"));
 
     await waitFor(async () => {
       await screen.getByText("Seems like you entered the wrong code");
+    });
+  });
+  test("gives an error message that the code is too short", async () => {
+    render(<AttendToClass />);
+    const inputClassCode = screen.getByPlaceholderText(
+      "Class Code"
+    ) as HTMLInputElement;
+    await userEvent.type(inputClassCode, "BADCODE", { delay: 0.1 });
+    await userEvent.click(screen.getByText("Attend Class"));
+
+    await waitFor(async () => {
+      await screen.getByText("Code should be 8 character");
+    });
+  });
+  test("gives an error message that the code is to long", async () => {
+    render(<AttendToClass />);
+    const inputClassCode = screen.getByPlaceholderText(
+      "Class Code"
+    ) as HTMLInputElement;
+    await userEvent.type(inputClassCode, "BADCODEAB", { delay: 0.1 });
+    await userEvent.click(screen.getByText("Attend Class"));
+
+    await waitFor(async () => {
+      await screen.getByText("Code should be 8 character");
+    });
+  });
+  test("gives an error message if the code contains numbers", async () => {
+    render(<AttendToClass />);
+    const inputClassCode = screen.getByPlaceholderText(
+      "Class Code"
+    ) as HTMLInputElement;
+    await userEvent.type(inputClassCode, "BADCODE1", { delay: 0.1 });
+    await userEvent.click(screen.getByText("Attend Class"));
+
+    await waitFor(async () => {
+      await screen.getByText("Code should contains uppercase letters only");
+    });
+  });
+  test("gives an error message if the code contains lower case", async () => {
+    render(<AttendToClass />);
+    const inputClassCode = screen.getByPlaceholderText(
+      "Class Code"
+    ) as HTMLInputElement;
+    await userEvent.type(inputClassCode, "badCODEE", { delay: 0.1 });
+    await userEvent.click(screen.getByText("Attend Class"));
+
+    await waitFor(async () => {
+      await screen.getByText("Code should contains uppercase letters only");
     });
   });
 });

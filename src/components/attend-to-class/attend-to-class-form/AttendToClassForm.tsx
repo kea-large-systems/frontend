@@ -39,6 +39,12 @@ export function AttendToClassForm({
                 value: true,
                 message: "Please type the code from the teacher's monitor",
               },
+              minLength: { value: 8, message: "Code should be 8 character" },
+              maxLength: { value: 8, message: "Code should be 8 character" },
+              pattern: {
+                value: /^[A-Z]*$/,
+                message: "Code should contains uppercase letters only",
+              },
             })}
           />
           <Box height={5} color="transparent">

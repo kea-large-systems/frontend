@@ -28,13 +28,13 @@ describe("attend to class component", () => {
     const submitButton = getByText("Attend Class");
     const inputClassCode = getByPlaceholderText("Class Code");
     await act(async () => {
-      await userEvent.type(inputClassCode, "abcd1234", { delay: 0.1 });
+      await userEvent.type(inputClassCode, "GOODCODE", { delay: 0.1 });
       await userEvent.click(submitButton);
     });
     await waitFor(() => {
       //function that makes the assert to be executed several times before it is failing
       const mockResult = onSubmit.mock.calls[0][0];
-      expect(mockResult.classCode).toBe("abcd1234");
+      expect(mockResult.classCode).toBe("GOODCODE");
     });
   });
   test("checks that error is shown when submitting is empty", async () => {

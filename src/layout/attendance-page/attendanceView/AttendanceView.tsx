@@ -41,7 +41,7 @@ export function AttendanceView({ subject }: AttendanceViewProps) {
       {lecture?.name ? <Text fontSize="2xl">{lecture.name}</Text> : null}
       {lecture?.lectureId ? (
         <AttendanceCode
-          lecture={{ ...lecture, subjectId: subject.subjectId + "" }}
+          lecture={{ ...lecture, subjectId: subject.subjectId.toString() }}
         />
       ) : null}
       <Button variant="secondary" onClick={handleClick}>

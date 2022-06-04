@@ -23,7 +23,7 @@ export const useGetClassAttendanceCode = (lecture: Lecture) => {
     {
       refetchInterval: 5000,
       refetchOnWindowFocus: false,
-      refetchOnMount: false,
+      refetchOnMount: true,
     }
   );
 };

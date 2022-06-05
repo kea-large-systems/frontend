@@ -1,12 +1,13 @@
 import { useGetClassAttendanceCode } from "../../../../api/useClass";
 import { Text } from "@chakra-ui/react";
+import { Lecture } from "../../../../api/useLecture";
 
 interface AttendanceCodeProps {
-  lectureId: number;
+  lecture: Lecture;
 }
 
-export function AttendanceCode({ lectureId }: AttendanceCodeProps) {
-  const { data: code } = useGetClassAttendanceCode(lectureId);
+export function AttendanceCode({ lecture }: AttendanceCodeProps) {
+  const { data: code } = useGetClassAttendanceCode(lecture);
   return (
     <Text fontSize="4xl">
       Code: <span>{code?.data.code}</span>

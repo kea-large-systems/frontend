@@ -21,7 +21,7 @@ export const deleteClassCode = rest.delete(
 export const getAttendCode = rest.get(
   `${BASE_URL}/class-codes/attend/:code`,
   (req, res, ctx) => {
-    if (req.params.code === "good-code") return res(ctx.status(200));
+    if (req.params.code === "GOODCODE") return res(ctx.status(200));
     else return res(ctx.status(400));
   }
 );

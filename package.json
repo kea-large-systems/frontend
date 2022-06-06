@@ -35,7 +35,7 @@
     "test-coverage-report": "npx react-scripts test --coverage --watchAll --coverageDirectory=coverage/jest",
     "test-selenium": "npm run end-to-end",
     "eject": "react-scripts eject",
-    "end-to-end": "./node_modules/.bin/mocha selenium/end-to-end.spec.js"
+    "end-to-end": "mocha selenium/end-to-end.spec.js"
   },
   "eslintConfig": {
     "extends": [

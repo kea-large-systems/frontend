@@ -9,7 +9,7 @@ describe("checks if Attendance view is shown as expected", () => {
     const subject: Subject = {
       subjectId: 1,
       name: "Testing",
-      class: "sw22",
+      classId: "sw22",
       studentsCount: 30,
     };
     renderWithUserAndRouter(

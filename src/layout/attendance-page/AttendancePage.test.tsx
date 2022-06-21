@@ -10,7 +10,7 @@ describe("checks if the the page shown currently", () => {
     const subject: Subject = {
       subjectId: 1,
       name: "Testing",
-      class: "sw22",
+      classId: "sw22",
       studentsCount: 30,
     };
     const history = createMemoryHistory();

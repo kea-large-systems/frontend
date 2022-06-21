@@ -7,7 +7,7 @@ import { TableRow } from "../table-row/TableRow";
 export interface Subject {
   subjectId: number;
   name: string;
-  class: string;
+  classId: string;
   studentsCount: number;
 }
 
@@ -26,7 +26,7 @@ export function SubjectTable({
       return (
         <TableRow
           key={subject.subjectId}
-          data={[subject.class, subject.name, subject.studentsCount]}
+          data={[subject.classId, subject.name, subject.studentsCount]}
           onClick={() => navigate(`/attendance-code`, { state: subject })}
         />
       );
